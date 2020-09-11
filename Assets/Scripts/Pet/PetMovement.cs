@@ -18,6 +18,7 @@ public class PetMovement : MonoBehaviour
 
     void Start()
     {
+        // should get the reference through editor field instead... 
         playerObject = GameObject.FindGameObjectWithTag("Player");
         cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
         mainCamera = cameraObject.GetComponent<Camera>();
