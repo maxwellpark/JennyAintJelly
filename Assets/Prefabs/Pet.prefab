@@ -134,7 +134,7 @@ MonoBehaviour:
   slowProjectilePrefab: {fileID: 0}
   snakeShotPrefab: {fileID: 0}
   theMediumOnePrefab: {fileID: 6247080702419201989, guid: d632dc7319831164aa51775ce377a814, type: 3}
-  theBigOnePrefab: {fileID: 0}
+  theBigOnePrefab: {fileID: 383634245386507684, guid: 8b27bb86f3f892448a6df2734fc622e5, type: 3}
   muzzleVelocity: 10
   spreadDistance: 2
 --- !u!1 &5867546107936983032
