@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // migrate the logic from alpha v.
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -17,20 +17,6 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        if (audioSource.loop)
-        {
-            PreventLoopClash();
-        }
-    }
 
-    void PreventLoopClash()
-    {
-        if (timer <= 0f)
-        {
-            audioSource.Stop();
-            audioSource.Play();
-            timer = clipLength;
-        }
-        timer--;
     }
 }
