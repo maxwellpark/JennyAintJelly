@@ -40,15 +40,15 @@ public class ProjectileManager : MonoBehaviour
         currentWeaponPrefab = startingWeaponPrefab;
         weaponType = WeaponType.standard;
 
-        sfx = GameObject.Find("SoundFXManager").GetComponent<AudioSource>();
-        sfx.loop = false;
+        //sfx = GameObject.Find("SoundFXManager").GetComponent<AudioSource>();
+        //sfx.loop = false;
     }
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            sfx.Play();
+            //sfx.Play();
             FireProjectile(SetProjectilePrefab());
 
         }
