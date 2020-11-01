@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public static GameObject playerObject;
+
     public static int damage = 1;
     public static int slowAmount = 0;
     public static int lives = 3;
@@ -14,6 +16,8 @@ public class PlayerData : MonoBehaviour
 
     private void Start()
     {
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+
         // temporary default workaround: 
         damage = 1;
         slowAmount = 0;

@@ -12,9 +12,9 @@ public class CustomCursor : MonoBehaviour
     public Sprite cursorSprite;
     public Texture2D cursorTexture;
 
-    public float zRotation;
+    private float zRotation;
 
-    SpriteRenderer sr;
+    private SpriteRenderer sr;
 
     //public CursorMode cursorMode = CursorMode.Auto;
     //public Vector2 hotSpot = Vector2.zero;
@@ -30,6 +30,8 @@ public class CustomCursor : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = cursorSprite;
         //sr.sprite.
+
+        // we should set the cursor colour programmatically 
     }
 
     // Update is called once per frame

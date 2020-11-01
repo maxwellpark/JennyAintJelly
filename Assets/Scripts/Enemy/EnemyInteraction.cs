@@ -6,55 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class EnemyInteraction : MonoBehaviour
 {
-    public GameObject playerObject;
-    public PlayerData playerData;
-    EnemyData enemyData;
+    private EnemyData enemyData;
 
-    Vector3 currentPosition;
-    Vector3 lastPosition;
-    float unstickDistance = 0.75f; 
-    bool stuck;
-
-    float timer;
-    float timerReset = 30f; 
-
-    float aggroRange = 60f;
+    private float timer;
+    private float timerReset = 30f;
+    private float aggroRange = 60f;
 
     //BloodEffect bloodEffect;
     //public GameObject blood; 
 
     void Start()
     {
-        playerObject = GameObject.FindGameObjectWithTag("Player");
-        playerData = playerObject.GetComponent<PlayerData>();
         enemyData = GetComponent<EnemyData>();
         //bloodEffect = GetComponent<BloodEffect>(); 
     }
 
     void Update()
     {
-        timer++;
-        if (timer >= timerReset)
-        {
-            timer = 0f; 
-            currentPosition = transform.position;
-
-            if (currentPosition == lastPosition)
-            {
-                UnstickEnemy();
-            } 
-
-            // Save last frame's position 
-            lastPosition = currentPosition;
-        }
-
-        if (Vector3.Distance(transform.position, playerObject.transform.position) <= aggroRange)
+        if (Vector3.Distance(transform.position, PlayerData.playerObject.transform.position) <= aggroRange)
         {
             // TODO: 
             // start pathing towards player if within proximity 
+            // can we do this with events or something else - so we don't need to keep checking aggrorange 
         }
-
-
     }
 
     public void TakeDamage()
@@ -101,45 +75,5 @@ public class EnemyInteraction : MonoBehaviour
             //bloodEffect.CreateBlood(); 
             Destroy(gameObject);
         }
-    }
-
-    void UnstickEnemy()
-    {
-        // naive solution for now 
-        // can encapsulate update method here if needed. 
-
-
-        // Enemy needs to go left or right 
-        if (Mathf.Abs(playerObject.transform.position.x - transform.position.x) >
-            Mathf.Abs(playerObject.transform.position.y - transform.position.y))
-        {
-            if (playerObject.transform.position.x > transform.position.x)
-            {
-                transform.position += new Vector3(unstickDistance, 0f, 0f);
-            }
-            else
-            {
-                transform.position += new Vector3(-unstickDistance, 0f, 0f);
-            }
-        }
-        else
-        {
-            if (playerObject.transform.position.y > transform.position.y)
-            {
-                transform.position += new Vector3(0f, unstickDistance, 0f);
-            }
-            else
-            {
-                transform.position += new Vector3(-0f, -unstickDistance, 0f);
-            }
-        }
-        //else
-        //{
-        //    //stuck = false;
-        //}
-        //while (stuck)
-        //{
-        //    //do more gradual, iterative repositioning*
-        //}
     }
 }

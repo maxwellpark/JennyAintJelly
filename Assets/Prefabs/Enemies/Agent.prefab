@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1635822435900687076}
   - component: {fileID: 1635822435900687098}
   - component: {fileID: 1635822435900687097}
+  - component: {fileID: 6043167894595397989}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Enemy
@@ -265,3 +266,17 @@ MonoBehaviour:
   hitpoints: 5
   damage: 2
   firstWave: 1
+--- !u!114 &6043167894595397989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635822435900687074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b98a1565031e0e4d970eeb6865669af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  playerData: {fileID: 0}
