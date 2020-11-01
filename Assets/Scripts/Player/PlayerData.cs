@@ -9,7 +9,6 @@ public class PlayerData : MonoBehaviour
     public static int damage = 1;
     public static int slowAmount = 0;
     public static int lives = 3;
-    // movement data 
 
     public static bool playerDead;
     public static bool gameOver;
@@ -17,8 +16,11 @@ public class PlayerData : MonoBehaviour
     private void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        SetDefaults();
+    }
 
-        // temporary default workaround: 
+    private void SetDefaults()
+    {
         damage = 1;
         slowAmount = 0;
         PlayerMovement.speed = 10f;

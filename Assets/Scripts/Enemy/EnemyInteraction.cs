@@ -44,7 +44,7 @@ public class EnemyInteraction : MonoBehaviour
             case "Pet":
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
-
+                    
             case "Projectile":
                 TakeDamage();
                 Destroy(other.gameObject);

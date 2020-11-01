@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using System.Security.Cryptography;
 
 // this could be amalgamated with 
 // the EnemySpriteAnimator, 
@@ -29,7 +28,8 @@ public class EnemyVFX : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         enemySpriteAnimator = GetComponent<EnemySpriteAnimator>();
 
-        petTransform = GameObject.Find("Pet").transform;
+        petTransform = GameObject.FindGameObjectWithTag("Pet").transform;
+        destinationSetter.target = petTransform;
     }
 
     void Update()

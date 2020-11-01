@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6992652753201596478}
   - component: {fileID: 7886529258952162158}
-  m_Layer: 0
+  - component: {fileID: 607849449939346256}
+  m_Layer: 8
   m_Name: CustomCursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,3 +83,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &607849449939346256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401987574019226145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78158cf1d1a6a054b98e0340974895c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitCursorPrefab: {fileID: 0}
+  missCursorPrefab: {fileID: 0}
+  cursorSprite: {fileID: 21300000, guid: 96e69639068314557a2be30fbaa725f7, type: 3}
+  cursorTexture: {fileID: 0}
