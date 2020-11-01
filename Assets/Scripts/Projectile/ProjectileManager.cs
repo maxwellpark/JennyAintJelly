@@ -22,7 +22,7 @@ public class ProjectileManager : MonoBehaviour
     GameObject playerObject;
     public static GameObject gunBarrel;
     public static GameObject currentWeaponPrefab;
-    public static WeaponType weaponType = WeaponType.standard;
+    //public static WeaponType weaponType = WeaponType.standard;
 
     public static float weaponDuration;
     public static bool weaponActive;
@@ -38,7 +38,10 @@ public class ProjectileManager : MonoBehaviour
         playerObject = GameObject.FindGameObjectWithTag("Player");
         gunBarrel = GameObject.Find("GunBarrel");
         currentWeaponPrefab = startingWeaponPrefab;
-        weaponType = WeaponType.standard;
+
+        PickupData.onWeaponPickup += SetProjectilePrefab;
+
+        //weaponType = WeaponType.standard;
 
         //sfx = GameObject.Find("SoundFXManager").GetComponent<AudioSource>();
         //sfx.loop = false;
@@ -49,7 +52,7 @@ public class ProjectileManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             //sfx.Play();
-            FireProjectile(SetProjectilePrefab());
+            FireProjectile(currentWeaponPrefab);
 
         }
 
@@ -93,24 +96,28 @@ public class ProjectileManager : MonoBehaviour
         //}
     }
 
-    private GameObject SetProjectilePrefab()
+    public void SetProjectilePrefab(WeaponType weaponType)
     {
         switch (weaponType)
         {
             case WeaponType.standard:
-                return startingWeaponPrefab;
+                currentWeaponPrefab = startingWeaponPrefab;
+                break;
             case WeaponType.dual:
-                return dualShotPrefab;
+                currentWeaponPrefab = dualShotPrefab;
+                break;
             case WeaponType.tri:
-                return triShotPrefab;
+                currentWeaponPrefab = triShotPrefab;
+                break;
             case WeaponType.slow:
-                return slowProjectilePrefab;
+                currentWeaponPrefab = slowProjectilePrefab;
+                break;
             case WeaponType.medium:
-                return theMediumOnePrefab;
+                currentWeaponPrefab = theMediumOnePrefab;
+                break;
             case WeaponType.blast:
-                return theBigOnePrefab;
-            default:
-                return startingWeaponPrefab;
+                currentWeaponPrefab = theBigOnePrefab;
+                break;
         }
     }
 }
