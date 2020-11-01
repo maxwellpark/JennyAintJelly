@@ -27,13 +27,14 @@ public class EnemySpriteAnimator : MonoBehaviour
 
     private int currentFrame;
     private float timer;
-    private bool flipped;
 
     public Direction direction;
 
     void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = false;
+        spriteRenderer.flipY = false; 
 
         // Default stationary position is facing down 
         stationaryPosition = stationaryFrames[2];
@@ -66,10 +67,7 @@ public class EnemySpriteAnimator : MonoBehaviour
             // Reset currentFrame to 0 when it reaches the length of the array 
             currentFrame = (currentFrame + 1) % frameArray.Length;
 
-            // Flip sprite if moving left 
-            spriteRenderer.flipX = flipped ? true : false;
-
-            // Update the sprite being renderer
+            // Update the sprite being rendered
             spriteRenderer.sprite = frameArray[currentFrame];
         }
     }
@@ -83,42 +81,34 @@ public class EnemySpriteAnimator : MonoBehaviour
             case Direction.up:
                 frameArray = upFrames;
                 stationaryPosition = stationaryFrames[0];
-                flipped = false;
                 break;
             case Direction.upleft:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
-                flipped = false;
                 break;
             case Direction.left:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
-                flipped = false;
                 break;
             case Direction.downleft:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
-                flipped = false;
                 break;
             case Direction.down:
                 frameArray = downFrames;
                 stationaryPosition = stationaryFrames[2];
-                flipped = false;
                 break;
             case Direction.downright:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
-                flipped = false;
                 break;
             case Direction.right:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
-                flipped = false;
                 break;
             case Direction.upright:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
-                flipped = false;
                 break;
         }
     }

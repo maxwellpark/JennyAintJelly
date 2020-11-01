@@ -17,6 +17,6 @@ public class PlayerData : MonoBehaviour
         // temporary default workaround: 
         damage = 1;
         slowAmount = 0;
-        PlayerMovement.speed = 5f;
+        PlayerMovement.speed = 10f;
     }
 }
