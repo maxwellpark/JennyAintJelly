@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PetMovement : MonoBehaviour
 {
-    public GameObject playerObject;
-    GameObject cameraObject;
-    Camera mainCamera;
-
     public Sprite[] frameArray;
     public SpriteRenderer spriteRenderer;
-    Vector3 mousePosition;
-    Vector2 petDistance = new Vector2(1f, 0f);
-    int currentFrame;
-    float timer;
-    float frameRate = 0.2f;
+
+    private GameObject playerObject;
+    private GameObject cameraObject;
+    private Camera mainCamera;
+
+    private Vector3 mousePosition;
+    private Vector2 petDistance = new Vector2(1f, 0f);
+
+    private int currentFrame;
+    private float timer;
+    private float frameRate = 0.2f;
 
     void Start()
     {
@@ -25,9 +27,12 @@ public class PetMovement : MonoBehaviour
 
     private void Update()
     {
-        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        //mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         //Debug.Log("Mouse pos: " + mousePosition);
         //Debug.Log("Cursor: " + Input.mousePosition); 
+
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
     }
 
     void FixedUpdate()
@@ -52,11 +57,19 @@ public class PetMovement : MonoBehaviour
         float zAngle = Mathf.Atan2(headDirection.y, headDirection.x) * Mathf.Rad2Deg + -90f; // +/- 90f 
 
         transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
+        //transform.eulerAngles = new Vector3(0f, 0f, zAngle);
+
+        //transform.LookAt(mousePosition);
 
         Vector2 playerPosition = playerObject.transform.position;
         transform.position = playerPosition - petDistance;
 
         //Debug.Log("Player pos: " + playerObject.transform.position); 
         //Debug.Log("Pet pos: " + transform.position); 
+        //Debug.Log("Pet eulers: " + transform.eulerAngles);
+
+        //Debug.Log("Cursor pos: " + Input.mousePosition);
+        Debug.Log(zAngle);
+
     }
 }

@@ -8,8 +8,8 @@ public class EnemyData : MonoBehaviour
     public Transform petTransform;
     public GameObject tileMap;
 
-    AIPath aiPath;
-    AIDestinationSetter destinationSetter;
+    //AIPath aiPath;
+    //AIDestinationSetter destinationSetter;
 
     public float movementSpeed;
     public float hitpoints;
@@ -18,17 +18,17 @@ public class EnemyData : MonoBehaviour
 
     void Start()
     {
-        aiPath = GetComponent<AIPath>();
-        aiPath.maxSpeed = movementSpeed;
-        aiPath.enableRotation = false;
-        destinationSetter = GetComponent<AIDestinationSetter>();
+        //aiPath = GetComponent<AIPath>();
+        //aiPath.maxSpeed = movementSpeed;
+        //aiPath.enableRotation = false;
+        //destinationSetter = GetComponent<AIDestinationSetter>();
 
         //taggedPet = GameObject.FindGameObjectWithTag("Pet").transform;
         //Debug.Log(taggedPet); 
         //destinationSetter.target = taggedPet;
 
         //destinationSetter.target = GameObject.FindGameObjectWithTag("Pet").transform;
-        destinationSetter.target = petTransform;
+        //destinationSetter.target = petTransform;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;

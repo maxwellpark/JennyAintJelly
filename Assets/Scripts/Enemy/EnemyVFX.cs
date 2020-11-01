@@ -18,6 +18,9 @@ public class EnemyVFX : MonoBehaviour
     // Point above which the sprite faces left 
     // or right, rather than up or down 
     [SerializeField] float verticalThreshold;
+    float threshold = 90f;
+
+    float newAngle; 
 
     void Start()
     {
@@ -25,7 +28,8 @@ public class EnemyVFX : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         enemySpriteAnimator = GetComponent<EnemySpriteAnimator>();
 
-        petTransform = GameObject.Find("JellyPetNew").transform;
+        petTransform = GameObject.FindGameObjectWithTag("Pet").transform;
+        destinationSetter.target = petTransform;
     }
 
     void Update()
@@ -33,32 +37,34 @@ public class EnemyVFX : MonoBehaviour
         SetEnemySpriteDirection();
     }
 
-    // Sprite faces a direction based on its path
     void SetEnemySpriteDirection()
     {
+        float threshold = 90f;
+        newAngle = Vector3.Angle(petTransform.forward, transform.position - petTransform.position);
 
-        // This can probably be simplified 
-        if (aiPath.desiredVelocity.y >= 0.01f)
+        if (newAngle < threshold)
         {
-            if (transform.position.x + (petTransform.position.x - transform.position.x) <= verticalThreshold)
-            {
-                enemySpriteAnimator.direction = Direction.up;
-            }
-            else
-            {
-                enemySpriteAnimator.direction = aiPath.desiredVelocity.x >= 0.01f ? Direction.right : Direction.left;
-            }
+            enemySpriteAnimator.direction = Direction.right;
         }
-        else if (aiPath.desiredVelocity.y <= 0.01f)
+        else
         {
-            if (transform.position.x + (petTransform.position.x - transform.position.x) <= verticalThreshold)
-            {
-                enemySpriteAnimator.direction = Direction.down;
-            }
-            else
-            {
-                enemySpriteAnimator.direction = aiPath.desiredVelocity.x >= 0.01f ? Direction.right : Direction.left;
-            }
+            enemySpriteAnimator.direction = Direction.left; 
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        //Gizmos.DrawLine(transform.position, petTransform.position);
+        //Gizmos.DrawLine(transform.position, transform.forward * Mathf.Infinity);
+
+        float totalFOV = 70.0f;
+        float rayRange = 10.0f;
+        float halfFOV = totalFOV / 2.0f;
+        Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
+        Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
+        Vector3 leftRayDirection = leftRayRotation * transform.forward;
+        Vector3 rightRayDirection = rightRayRotation * transform.forward;
+        Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
+        Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
     }
 }

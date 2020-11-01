@@ -11,6 +11,7 @@ public class PickupInteraction : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
+            Debug.Log("Pickup collision"); 
             pickup.TriggerPickup();
             Destroy(gameObject);
 

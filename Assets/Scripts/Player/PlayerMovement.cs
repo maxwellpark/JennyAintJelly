@@ -9,7 +9,7 @@ public enum Direction
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static float speed = 5f;
+    public static float speed = 10f;
     public static Vector2 movement;
     public Vector3 mousePosition;
 

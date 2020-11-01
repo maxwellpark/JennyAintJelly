@@ -12,9 +12,9 @@ public class CustomCursor : MonoBehaviour
     public Sprite cursorSprite;
     public Texture2D cursorTexture;
 
-    public float zRotation;
+    private float zRotation;
 
-    SpriteRenderer sr;
+    private SpriteRenderer sr;
 
     //public CursorMode cursorMode = CursorMode.Auto;
     //public Vector2 hotSpot = Vector2.zero;
@@ -22,22 +22,24 @@ public class CustomCursor : MonoBehaviour
 
     float zRotationSpeed = 5f;
 
-    // Start is called before the first frame update
     void Start()
     {
+        transform.position = Vector3.forward;
+
         //cursorSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/Cursors/");
         Cursor.visible = false;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = cursorSprite;
         //sr.sprite.
+
+        // we should set the cursor colour programmatically 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPosition;
-        RotateCursor();
+        //RotateCursor();
     }
     //void OnMouseEnter()
     //{
