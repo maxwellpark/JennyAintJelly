@@ -1,4 +1,4 @@
-# Jelly Ain't Jelly! 
+# Jenny Ain't Jelly! 
 
 A top-down shooter game about a top secret jellyfish experiment program. 
 
