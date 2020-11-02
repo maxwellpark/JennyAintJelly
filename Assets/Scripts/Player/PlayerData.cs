@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    // We can access the player and pet objects globally
     public static GameObject playerObject;
+    public static GameObject petObject; 
 
     public static int damage = 1;
     public static int slowAmount = 0;
@@ -16,6 +18,7 @@ public class PlayerData : MonoBehaviour
     private void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        petObject = GameObject.FindGameObjectWithTag("Pet");
         SetDefaults();
     }
 

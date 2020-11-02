@@ -20,7 +20,6 @@ public class TitleScreen : MonoBehaviour
         SceneManager.LoadScene("Route 1");
     }
 
-    // separate game over class?
     void DisplayGameOverText()
     {
         if (PlayerData.gameOver)
