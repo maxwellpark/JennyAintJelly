@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class SpriteAnimator : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
-
-    [SerializeField]
-    private float frameRate = 0.15f;
-
     // The sprites to loop through when moving  
     public Sprite[] upFrames;
     public Sprite[] leftFrames;
@@ -18,13 +13,18 @@ public class SpriteAnimator : MonoBehaviour
 
     // Stores the currently looping sprites 
     private Sprite[] frameArray;
-
+    
     // The sprites displayed when stationary  
     // Indices are: 0-3 WASD
     public Sprite[] stationaryFrames;
 
     // Stores the current stationary sprite
     private Sprite stationaryPosition;
+
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    private float frameRate = 0.15f;
 
     private int currentFrame;
     private float timer;

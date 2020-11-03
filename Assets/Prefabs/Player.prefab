@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51126d98acfcd6e4f86e33c490ac6228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 0.15
   upFrames:
   - {fileID: 21300000, guid: cb84efec2f1ab48fb9f692ee1f8c7df9, type: 3}
   - {fileID: 21300000, guid: 8a0952d0b57874b9b8d22b78be3b7512, type: 3}
@@ -166,6 +165,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c140ea8c373e4422da7a6f4b5bb768b0, type: 3}
   - {fileID: 21300000, guid: bc55aeb18742f435394c308d3e35f743, type: 3}
   - {fileID: 21300000, guid: df4d1e8902e2c4f428063fed60947323, type: 3}
+  frameRate: 0.15
 --- !u!114 &4717824490814755658
 MonoBehaviour:
   m_ObjectHideFlags: 0
