@@ -1497,6 +1497,10 @@ PrefabInstance:
       propertyPath: petTransform
       value: 
       objectReference: {fileID: 1078873658}
+    - target: {fileID: 1635822435900687099, guid: 8d9bc99f7c52b9642be7b7381560f7d6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9bc99f7c52b9642be7b7381560f7d6, type: 3}
 --- !u!1001 &4004766075180663806

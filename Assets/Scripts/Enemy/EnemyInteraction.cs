@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Pathfinding;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,35 +8,47 @@ using UnityEngine.SceneManagement;
 
 public class EnemyInteraction : MonoBehaviour
 {
+    public static event Action onEnemyDeath; 
+
     private EnemyData enemyData;
 
-    private float timer;
-    private float timerReset = 30f;
-    private float aggroRange = 60f;
+    private AIPath aiPath;
+    private AIDestinationSetter destinationSetter;
 
-    //BloodEffect bloodEffect;
-    //public GameObject blood; 
+    private float aggroRange = 16f;
 
-    void Start()
+    private void Start()
     {
         enemyData = GetComponent<EnemyData>();
-        //bloodEffect = GetComponent<BloodEffect>(); 
-    }
 
-    void Update()
-    {
-        if (Vector3.Distance(transform.position, PlayerData.playerObject.transform.position) <= aggroRange)
-        {
-            // TODO: 
-            // start pathing towards player if within proximity 
-            // can we do this with events or something else - so we don't need to keep checking aggrorange 
-        }
-    }
+        aiPath = GetComponent<AIPath>();
+        aiPath.maxSpeed = enemyData.movementSpeed;
+        aiPath.enableRotation = false;
+        aiPath.enabled = IsInAggroRange() ? true : false;
 
+        destinationSetter = GetComponent<AIDestinationSetter>();
+        destinationSetter.target = PlayerData.petObject.transform;
+    }
     public void TakeDamage()
     {
         enemyData.hitpoints -= PlayerData.damage;
-        // enemy hit effect here 
+    }
+
+    private void Update()
+    {
+        if (!aiPath.enabled)
+        {
+            aiPath.enabled = IsInAggroRange();
+        }
+    }
+
+    private bool IsInAggroRange()
+    {
+        if (Vector3.Distance(transform.position, PlayerData.playerObject.transform.position) <= aggroRange)
+        {
+            return true; 
+        }
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -50,30 +64,13 @@ public class EnemyInteraction : MonoBehaviour
                 Destroy(other.gameObject);
                 break;
 
-            case "SlowProjectile":
-                TakeDamage();
-                enemyData.movementSpeed -= PlayerData.slowAmount;
-                Destroy(other.gameObject);
-                break;
-
-            case "SnareProjectile":
-                TakeDamage();
-                enemyData.movementSpeed = 0f;
-                // remember to start timer
-                // and play animation/add static sprite 
-
-                Destroy(other.gameObject);
-                break;
-
-            case "Wall":
-                // Unstick method here?
-                break;
+            // Add more weapon debuffs here if needed
         }
 
         if (enemyData.hitpoints <= 0)
         {
-            //bloodEffect.CreateBlood(); 
             Destroy(gameObject);
+            onEnemyDeath?.Invoke();
         }
     }
 }
