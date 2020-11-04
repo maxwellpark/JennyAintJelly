@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fc1e59e2f9e131478e28ab9e5c537f5, type: 3}
-  m_Name: MediumWeaponPickup
+  m_Name: DualShotPickup
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6247080702419201989, guid: d632dc7319831164aa51775ce377a814, type: 3}
-  pickupType: 2
-  weaponType: 4
+  prefab: {fileID: 8556171567983704700, guid: cc6c6951530c0a347ab58f54c9a45c59, type: 3}
+  pickupType: 0
+  weaponType: 1
   coordinates: {x: 0, y: 0}
-  value: 3
+  value: 2

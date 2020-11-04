@@ -24,7 +24,9 @@ public class EnemyInteraction : MonoBehaviour
         aiPath = GetComponent<AIPath>();
         aiPath.maxSpeed = enemyData.movementSpeed;
         aiPath.enableRotation = false;
-        aiPath.enabled = IsInAggroRange() ? true : false;
+
+        // Start pathing towards player if in range 
+        aiPath.enabled = IsInAggroRange();
 
         destinationSetter = GetComponent<AIDestinationSetter>();
         destinationSetter.target = PlayerData.petObject.transform;
