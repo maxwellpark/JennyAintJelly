@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private string sceneName;
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.otherCollider.CompareTag("Player"))
+        {
+            Debug.Log("Exit hit");
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }
