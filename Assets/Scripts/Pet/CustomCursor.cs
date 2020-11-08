@@ -19,7 +19,6 @@ public class CustomCursor : MonoBehaviour
     //public CursorMode cursorMode = CursorMode.Auto;
     //public Vector2 hotSpot = Vector2.zero;
 
-
     float zRotationSpeed = 5f;
 
     void Start()

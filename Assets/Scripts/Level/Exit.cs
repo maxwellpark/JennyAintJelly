@@ -7,12 +7,11 @@ public class Exit : MonoBehaviour
 {
     [SerializeField]
     private string sceneName;
-    
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.otherCollider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("Exit hit");
             SceneManager.LoadScene(sceneName);
         }
     }

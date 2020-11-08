@@ -15,8 +15,6 @@ public class EnemyInteraction : MonoBehaviour
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
 
-    private float aggroRange = 16f;
-
     private void Start()
     {
         enemyData = GetComponent<EnemyData>();
@@ -31,9 +29,14 @@ public class EnemyInteraction : MonoBehaviour
         destinationSetter = GetComponent<AIDestinationSetter>();
         destinationSetter.target = PlayerData.petObject.transform;
     }
-    public void TakeDamage()
+
+    private bool IsInAggroRange()
     {
-        enemyData.hitpoints -= PlayerData.damage;
+        if (Vector3.Distance(transform.position, PlayerData.playerObject.transform.position) <= enemyData.aggroRange)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void Update()
@@ -44,13 +47,9 @@ public class EnemyInteraction : MonoBehaviour
         }
     }
 
-    private bool IsInAggroRange()
+    public void TakeDamage()
     {
-        if (Vector3.Distance(transform.position, PlayerData.playerObject.transform.position) <= aggroRange)
-        {
-            return true; 
-        }
-        return false;
+        enemyData.hitpoints -= PlayerData.damage;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

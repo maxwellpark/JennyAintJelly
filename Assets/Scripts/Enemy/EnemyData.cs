@@ -5,17 +5,32 @@ using UnityEngine;
 
 public class EnemyData : MonoBehaviour
 {
-    public float movementSpeed;
     public float hitpoints;
-    public int damage;
-    public bool firstWave = true;
+    public float movementSpeed;
+    public float aggroRange;
 
-    void Start()
+    private float defaultHitpoints = 5;
+    private float defaultMovementSpeed = 10;
+    private float defaultAggroRange = 8f;
+
+    private void Awake()
     {
+        SetDefaults();
     }
 
-    void Update()
+    private void SetDefaults()
     {
-        //Debug.Log("Target pos: " + destinationSetter.target.transform.position); 
+        if (hitpoints <= 0)
+        {
+            hitpoints = defaultHitpoints;
+        }
+        if (movementSpeed <= 0)
+        {
+            movementSpeed = defaultMovementSpeed;
+        }
+        if (aggroRange <= 0)
+        {
+            aggroRange = defaultAggroRange;
+        }
     }
 }
