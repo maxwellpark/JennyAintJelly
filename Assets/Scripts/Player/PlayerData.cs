@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    // We can access the player and pet objects globally
+    // We can access the player and pet objects globally via these
     public static GameObject playerObject;
-    public static GameObject petObject; 
+    public static GameObject petObject;
 
     public static int damage = 1;
-    public static int slowAmount = 0;
     public static int lives = 3;
 
     public static bool playerDead;
@@ -25,7 +24,6 @@ public class PlayerData : MonoBehaviour
     private void SetDefaults()
     {
         damage = 1;
-        slowAmount = 0;
         PlayerMovement.speed = 10f;
     }
 }

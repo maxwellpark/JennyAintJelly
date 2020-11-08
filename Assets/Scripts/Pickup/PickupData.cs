@@ -8,50 +8,37 @@ public enum PickupType
     Health, Speed, Weapon
 }
 
-// break these out later 
 [CreateAssetMenu(fileName = "Pickup", menuName = "ScriptableObjects/Pickup", order = 1)]
 public class PickupData : ScriptableObject
 {
     public static event Action<WeaponType> onWeaponPickup;
 
     public GameObject prefab;
-    public Vector2 coordinates;
-    public float duration;
-    public int health;
-    public int damage;
-    public int speedIncrease;
-    public PickupType type;
-    public WeaponType weaponType;
 
-    // this ought to be in the corresponding Interaction class
+    public PickupType pickupType;
+    public WeaponType weaponType;
+    public Vector2 coordinates;
+
+    // This increases either damage or speed based on the type of pickup
+    public int value; 
+
     public void TriggerPickup()
     {
-        //Debug.Log("Pickup triggered!"); 
-
-        if (type == PickupType.Health)
+        switch (pickupType)
         {
-            //PlayerData.healthPoints += health; 
+            case PickupType.Weapon:
+                PlayerData.damage = value; 
+                onWeaponPickup?.Invoke(weaponType);
+                break;
+
+            case PickupType.Speed:
+                if (PlayerMovement.speed <= PlayerMovement.maxSpeed)
+                {
+                    PlayerMovement.speed += value;
+                    // Clamp this value if it's a balancing issue later on 
+                }
+                break;
         }
-        else if (type == PickupType.Weapon)
-        {
-            PlayerData.damage = damage;
-            //ProjectileManager.weaponType = weaponType;
-            ProjectileManager.weaponActive = true;
-            ProjectileManager.weaponDuration = duration;
-
-            onWeaponPickup?.Invoke(weaponType);
-        }
-        else if (type == PickupType.Speed)
-        {
-            PlayerMovement.speed += speedIncrease;
-
-            // speed cap 
-            if (PlayerMovement.speed >= 10)
-            {
-                //PlayerMovement.speed = 10; 
-            }
-        }
-
-
     }
 }
+

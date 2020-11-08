@@ -19,20 +19,17 @@ public class CustomCursor : MonoBehaviour
     //public CursorMode cursorMode = CursorMode.Auto;
     //public Vector2 hotSpot = Vector2.zero;
 
-
     float zRotationSpeed = 5f;
 
     void Start()
     {
         transform.position = Vector3.forward;
 
-        //cursorSprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/Sprites/Cursors/");
         Cursor.visible = false;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = cursorSprite;
-        //sr.sprite.
 
-        // we should set the cursor colour programmatically 
+        // We should set the cursor colour programmatically 
     }
 
     void Update()
@@ -41,33 +38,9 @@ public class CustomCursor : MonoBehaviour
         transform.position = cursorPosition;
         //RotateCursor();
     }
-    //void OnMouseEnter()
-    //{
-    //    //Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-    //}
-
-    //void OnMouseExit()
-    //{
-    //    //Cursor.SetCursor(null, Vector2.zero, cursorMode);
-    //}
 
     void RotateCursor()
     {
-        //transform.Rotate(0f, 0f, zRotation, Space.Self);
-        //transform.Rotate(Quaternion.Euler(new Vector3(0f, 0f, zRotationSpeed)));
-
         transform.RotateAround(transform.position, Vector3.forward, zRotationSpeed * Time.deltaTime);
     }
-
-    //void TexturiseSprites()
-    //{
-    //    //cursorSprite
-    //    cursorTexture = new Texture2D((int)cursorSprite.rect.width, (int)cursorSprite.rect.height);
-    //    var pixels = cursorSprite.texture.GetPixels((int)cursorSprite.textureRect.x,
-    //                                                (int)cursorSprite.textureRect.y,
-    //                                                (int)cursorSprite.textureRect.width,
-    //                                                (int)cursorSprite.textureRect.height);
-    //    cursorTexture.SetPixels(pixels);
-    //    cursorTexture.Apply();
-    //}
 }
