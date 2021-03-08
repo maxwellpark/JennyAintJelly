@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour, ISingleton
 		playerObject = GameObject.FindGameObjectWithTag(PlayerConstants.PlayerTag);
 		PlayerCollider = playerObject.GetComponent<Collider2D>();
 
-        petObject = GameObject.FindGameObjectWithTag(PlayerConstants.PetTag);
+        petObject = GameObject.FindGameObjectWithTag(PetConstants.PetTag);
 		PetCollider = petObject.GetComponent<Collider2D>();
 
 		GameManager.OnLevelTransition += SetStartingValues;

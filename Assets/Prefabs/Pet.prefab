@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 5867546106855626742}
   - component: {fileID: 5867546106855626745}
   - component: {fileID: 5867546106855626744}
-  - component: {fileID: 5867546106855626747}
-  - component: {fileID: 5867546106855626743}
   m_Layer: 0
   m_Name: Pet
   m_TagString: Pet
@@ -98,45 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0966cb27ca12c45b77551a2e39a5a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
   frameArray:
+  - {fileID: 21300000, guid: e69b60f14e79147558ea6130761e2aa2, type: 3}
   - {fileID: 21300000, guid: 972661e6dda174ac49e4f84298c0c414, type: 3}
   - {fileID: 21300000, guid: 9561dab9df44c45fcb00400e5030f7d5, type: 3}
-  - {fileID: 21300000, guid: e69b60f14e79147558ea6130761e2aa2, type: 3}
   spriteRenderer: {fileID: 5867546106855626745}
---- !u!114 &5867546106855626747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5867546106855626746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d966977b0d8f91f4fb089085a2222c95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5867546106855626743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5867546106855626746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de156036ff6606f42bb6e8458fce8191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingWeaponPrefab: {fileID: 7810482897859241445, guid: f24a4b544bbf87b4189ee2313b3b5076, type: 3}
-  dualShotPrefab: {fileID: 0}
-  triShotPrefab: {fileID: 0}
-  slowProjectilePrefab: {fileID: 0}
-  snakeShotPrefab: {fileID: 0}
-  theMediumOnePrefab: {fileID: 6247080702419201989, guid: d632dc7319831164aa51775ce377a814, type: 3}
-  theBigOnePrefab: {fileID: 383634245386507684, guid: 8b27bb86f3f892448a6df2734fc622e5, type: 3}
-  muzzleVelocity: 10
-  spreadDistance: 2
 --- !u!1 &5867546107936983032
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +112,7 @@ GameObject:
   - component: {fileID: 5867546107936983033}
   m_Layer: 0
   m_Name: GunBarrel
-  m_TagString: Untagged
+  m_TagString: GunBarrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

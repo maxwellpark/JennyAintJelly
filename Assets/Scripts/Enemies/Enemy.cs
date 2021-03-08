@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(PlayerConstants.PetTag))
+        if (collision.CompareTag(PetConstants.PetTag))
         {
             CatchPet();
         }

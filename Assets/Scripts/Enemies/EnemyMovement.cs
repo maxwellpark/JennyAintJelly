@@ -2,8 +2,6 @@
 
 public class EnemyMovement : Movement
 {
-    private readonly float directionThreshold = 90f;
-
     private void Update()
     {
         SetDirection();
@@ -16,6 +14,8 @@ public class EnemyMovement : Movement
 
     public override void Move()
     {
+        // Navigation logic 
+
         throw new System.NotImplementedException();
     }
 
@@ -24,7 +24,7 @@ public class EnemyMovement : Movement
         float newAngle = Vector3.Angle(
             PlayerManager.PetTransform.forward, transform.position - PlayerManager.PetPosition);
 
-        if (newAngle < directionThreshold)
+        if (newAngle < EnemyConstants.DirectionThreshold)
         {
             SpriteAnimator.Direction = Direction.Right;
         }

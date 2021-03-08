@@ -37,6 +37,6 @@ public class CustomCursor : MonoBehaviour
     private void RotateCursor()
     {
         transform.RotateAround(
-            transform.position, Vector3.forward, PetConstants.zRotationSpeed * Time.deltaTime);
+            transform.position, Vector3.forward, PetConstants.ZRotationSpeed * Time.deltaTime);
     }
 }
