@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SpriteAnimator : MonoBehaviour
+public abstract class SpriteAnimator : MonoBehaviour
 {
     // The sprites to loop through when moving  
     [SerializeField] private Sprite[] upFrames;
@@ -41,7 +41,7 @@ public class SpriteAnimator : MonoBehaviour
     {
         Animate();
     }
-
+    
     public virtual void Animate()
     {
         if (movement.MovementVector == Vector2.zero)

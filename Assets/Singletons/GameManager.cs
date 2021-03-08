@@ -9,7 +9,7 @@ public enum GameState
 
 public enum Level
 {
-	Road, Caves, MilitaryBase
+	Route1, Caves, MilitaryBase
 }
 
 public class GameManager : MonoBehaviour, ISingleton

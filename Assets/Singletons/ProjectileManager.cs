@@ -39,11 +39,11 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         SetStartingValues();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (timer > 0)
         {
-            timer -= Time.deltaTime;
+            timer -= Time.fixedDeltaTime;
             return;
         }
 
@@ -65,19 +65,19 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         // Make bullets pass through player 
         Physics2D.IgnoreCollision(newProjectile.GetComponent<Collider2D>(), PlayerManager.PlayerCollider);
 
-        projectileAudio.Play();
+        AudioManager.Instance.ProjectileAudio.Play();
     }
 
     public static void SetCurrentProjectile(GameObject projectilePrefab, AudioClip projectileSound)
     {
         currentProjectilePrefab = projectilePrefab;
-        projectileAudio.clip = projectileSound;
+        AudioManager.Instance.ProjectileAudio.clip = projectileSound;
     }
 
     public void SetStartingValues()
     {
         currentProjectilePrefab = defaultProjectilePrefab;
-        projectileAudio.clip = defaultProjectileSound;
+        AudioManager.Instance.ProjectileAudio.clip = defaultProjectileSound;
         CurrentRateOfFire = ProjectileConstants.DefaultRateOfFire;
     }
 }

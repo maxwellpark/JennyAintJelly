@@ -27,7 +27,7 @@ public class EnemyManager : MonoBehaviour, ISingleton
 		// We could pass a coefficient instead
 		switch (GameManager.CurrentLevel)
         {
-			case Level.Road:
+			case Level.Route1:
 
 				break;
 			case Level.Caves:
@@ -36,7 +36,6 @@ public class EnemyManager : MonoBehaviour, ISingleton
 			case Level.MilitaryBase:
 				
 				break;
-			
         }
     }
 

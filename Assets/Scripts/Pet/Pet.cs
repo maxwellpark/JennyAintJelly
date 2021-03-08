@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
-public class PetMovement : MonoBehaviour
+public class Pet : MonoBehaviour
 {
     private Vector3 mousePosition;
-    private Vector2 petDistance = new Vector2(1f, 0f);
-
 
     private void Update()
     {
@@ -20,8 +18,6 @@ public class PetMovement : MonoBehaviour
         float zAngle = Mathf.Atan2(headDirection.y, headDirection.x) * Mathf.Rad2Deg + -90f; // +/- 90f 
 
         transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
-
-        Vector2 playerPosition = PlayerManager.playerObject.transform.position;
-        transform.position = playerPosition - petDistance;
+        transform.position = PlayerManager.PlayerPosition - PetConstants.DistanceFromPlayer;
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TitleScreen : MonoBehaviour
@@ -9,22 +6,8 @@ public class TitleScreen : MonoBehaviour
     public Button enterGameBtn;
     public GameObject gameOverText;
 
-    void Start()
+    private void Start()
     {
-        enterGameBtn.onClick.AddListener(delegate { EnterGame(); });
-    }
-
-    void EnterGame()
-    {
-        PlayerData.gameOver = false;
-        SceneManager.LoadScene("Route 1");
-    }
-
-    void DisplayGameOverText()
-    {
-        if (PlayerData.gameOver)
-        {
-            gameOverText.SetActive(true);
-        }
+        //enterGameBtn.onClick.AddListener(delegate { EnterGame(); });
     }
 }

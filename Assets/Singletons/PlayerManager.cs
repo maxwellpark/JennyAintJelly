@@ -7,16 +7,18 @@ public class PlayerManager : MonoBehaviour, ISingleton
 	// Player state 
 	private static GameObject playerObject;
 	public static Collider2D PlayerCollider;
-	public static Vector3 PlayerPosition => playerObject.transform.position;
-	public static Vector3 PlayerRotation => playerObject.transform.eulerAngles;
+	public static Transform PlayerTransform => playerObject.transform;
+	public static Vector3 PlayerPosition => PlayerTransform.position;
+	public static Vector3 PlayerRotation => PlayerTransform.eulerAngles;
 	public static float CurrentSpeed { get; set; }
 	public static bool IsPlayerDead { get; set; }
 
 	// Pet state 
 	private static GameObject petObject;
 	public static Collider2D PetCollider;
-	public static Vector3 PetPosition => petObject.transform.position;
-	public static Vector3 PetRotation => petObject.transform.eulerAngles;
+	public static Transform PetTransform => petObject.transform;
+	public static Vector3 PetPosition => PetTransform.position;
+	public static Vector3 PetRotation => PetTransform.eulerAngles;
 
     private void Awake()
 	{
