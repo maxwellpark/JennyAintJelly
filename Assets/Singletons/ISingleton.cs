@@ -1,4 +1,4 @@
 ﻿public interface ISingleton
 {
-    void SetDefaults();
+    void SetStartingValues();
 }

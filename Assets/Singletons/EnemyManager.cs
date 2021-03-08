@@ -25,25 +25,28 @@ public class EnemyManager : MonoBehaviour, ISingleton
 	private static void SetEnemyScaling()
     {
 		// We could pass a coefficient instead
-		switch (GameManager.CurrentLevelNumber)
+		switch (GameManager.CurrentLevel)
         {
-			case 1:
+			case Level.Road:
+
 				break;
-			case 2:
+			case Level.Caves:
+				
 				break;
-			case 3:
+			case Level.MilitaryBase:
+				
 				break;
 			
         }
     }
 
-	private static void GetEnemies()
+	private static GameObject[] GetEnemies()
     {
-		enemies = GameObject.FindGameObjectsWithTag(EnemyConstants.EnemyTag);
+		return GameObject.FindGameObjectsWithTag(EnemyConstants.EnemyTag);
     }
 
-	public void SetDefaults()
+	public void SetStartingValues()
     {
-
+		enemies = GetEnemies();
     }
 }

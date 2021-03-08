@@ -29,14 +29,14 @@ public class ProjectileManager : MonoBehaviour, ISingleton
             Destroy(gameObject);
             return;
         }
-        GameManager.OnLevelTransition += SetDefaults;
+        GameManager.OnLevelTransition += SetStartingValues;
     }
 
     private void Start()
     {
         projectileAudio = GetComponent<AudioSource>();
         gunBarrel = GameObject.FindGameObjectWithTag(ProjectileConstants.GunBarrelTag);
-        SetDefaults();
+        SetStartingValues();
     }
 
     private void Update()
@@ -74,7 +74,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         projectileAudio.clip = projectileSound;
     }
 
-    public void SetDefaults()
+    public void SetStartingValues()
     {
         currentProjectilePrefab = defaultProjectilePrefab;
         projectileAudio.clip = defaultProjectileSound;

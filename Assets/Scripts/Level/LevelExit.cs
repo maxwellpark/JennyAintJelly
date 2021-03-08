@@ -2,13 +2,13 @@
 
 public class LevelExit : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
+    [SerializeField] private Level nextLevel;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag(PlayerConstants.PlayerTag))
         {
-            GameManager.LoadNextLevel(sceneName);
+            GameManager.LoadNextLevel(nextLevel);
             
             // Transition coroutine
         }

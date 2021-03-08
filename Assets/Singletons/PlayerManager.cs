@@ -36,10 +36,10 @@ public class PlayerManager : MonoBehaviour, ISingleton
         petObject = GameObject.FindGameObjectWithTag(PlayerConstants.PetTag);
 		PetCollider = petObject.GetComponent<Collider2D>();
 
-		GameManager.OnLevelTransition += SetDefaults;
+		GameManager.OnLevelTransition += SetStartingValues;
 	}
 
-	public void SetDefaults()
+	public void SetStartingValues()
     {
 		CurrentSpeed = PlayerConstants.DefaultMoveSpeed;
 		IsPlayerDead = false;
