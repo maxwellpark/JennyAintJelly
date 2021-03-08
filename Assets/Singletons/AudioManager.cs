@@ -6,10 +6,13 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource MusicAudio;
     public AudioSource ProjectileAudio;
+    public AudioSource ProjectileReloadAudio;
 
-    [SerializeField] AudioClip route1Track;
-    [SerializeField] AudioClip cavesTrack;
-    [SerializeField] AudioClip militaryBaseTrack;
+    [SerializeField] AudioClip route1Clip;
+    [SerializeField] AudioClip cavesClip;
+    [SerializeField] AudioClip militaryBaseClip;
+
+    [SerializeField] AudioClip reloadClip;
 
     private void Awake()
     {
@@ -31,13 +34,13 @@ public class AudioManager : MonoBehaviour
         switch (GameManager.CurrentLevel)
         {
             case Level.Route1:
-                MusicAudio.clip = route1Track;
+                MusicAudio.clip = route1Clip;
                 break;
             case Level.Caves:
-                MusicAudio.clip = cavesTrack;
+                MusicAudio.clip = cavesClip;
                 break;
             case Level.MilitaryBase:
-                MusicAudio.clip = militaryBaseTrack;
+                MusicAudio.clip = militaryBaseClip;
                 break;
         }
         MusicAudio.Play();

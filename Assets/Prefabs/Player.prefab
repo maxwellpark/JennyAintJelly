@@ -164,15 +164,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8a0952d0b57874b9b8d22b78be3b7512, type: 3}
   leftFrames:
   - {fileID: 21300000, guid: 8fc9919441a4a4c1b8668c4cc7dd89cd, type: 3}
+  - {fileID: 21300000, guid: c140ea8c373e4422da7a6f4b5bb768b0, type: 3}
   downFrames:
   - {fileID: 21300000, guid: d1924ce68b1454fa383f8c34f2a7e1d0, type: 3}
   - {fileID: 21300000, guid: f988bebfc5c2245439edbb4d7ab8ac87, type: 3}
   rightFrames:
   - {fileID: 21300000, guid: 374f01133442b4288bcea6342fd60fbe, type: 3}
+  - {fileID: 21300000, guid: df4d1e8902e2c4f428063fed60947323, type: 3}
   stationaryFrames:
   - {fileID: 21300000, guid: cb84efec2f1ab48fb9f692ee1f8c7df9, type: 3}
   - {fileID: 21300000, guid: c140ea8c373e4422da7a6f4b5bb768b0, type: 3}
   - {fileID: 21300000, guid: bc55aeb18742f435394c308d3e35f743, type: 3}
   - {fileID: 21300000, guid: df4d1e8902e2c4f428063fed60947323, type: 3}
-  frameRate: 16
+  frameRate: 0.2
   movement: {fileID: 849429718550252778}

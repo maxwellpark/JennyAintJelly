@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3655609560829851561}
   - component: {fileID: -1290187359722463954}
   m_Layer: 0
-  m_Name: StartingWeapon
+  m_Name: SmallestProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7810482897859241445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.23, y: 0.29, z: -37.244568}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -144,5 +144,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4329df316d837944ea5fb4e80301a238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionEffect: {fileID: 0}
-  damage: 0

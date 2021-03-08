@@ -8,8 +8,8 @@ public class PlayerManager : MonoBehaviour, ISingleton
 	private static GameObject playerObject;
 	public static Collider2D PlayerCollider;
 	public static Transform PlayerTransform => playerObject.transform;
-	public static Vector3 PlayerPosition => PlayerTransform.position;
-	public static Vector3 PlayerRotation => PlayerTransform.eulerAngles;
+	public static Vector3 PlayerPosition { get => PlayerTransform.position; set => PlayerTransform.position = value; }
+	public static Vector3 PlayerRotation { get => PlayerTransform.eulerAngles; set => PlayerTransform.eulerAngles = value; }
 	public static float CurrentSpeed { get; set; }
 	public static bool IsPlayerDead { get; set; }
 
@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour, ISingleton
         petObject = GameObject.FindGameObjectWithTag(PetConstants.PetTag);
 		PetCollider = petObject.GetComponent<Collider2D>();
 
+		SetStartingValues();
 		GameManager.OnLevelTransition += SetStartingValues;
 	}
 

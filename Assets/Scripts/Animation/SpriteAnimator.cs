@@ -41,7 +41,7 @@ public abstract class SpriteAnimator : MonoBehaviour
     {
         Animate();
     }
-    
+
     public virtual void Animate()
     {
         if (movement.MovementVector == Vector2.zero)

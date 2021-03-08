@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        timer--;
+        timer -= Time.deltaTime;
         
         // Destroy the object after the timer has elapsed
         if (timer <= 0)

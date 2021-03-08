@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour, ISingleton
 {
@@ -13,9 +14,9 @@ public class ProjectileManager : MonoBehaviour, ISingleton
     // Dictates the projectile spawn position
     private GameObject gunBarrel;
 
-    public static float CurrentRateOfFire { get; set; }
     public static float CurrentDamage { get; set; }
-    private float timer;
+    public static float CurrentRateOfFire { get; set; }
+    private bool isWaiting;
 
     private void Awake()
     {
@@ -39,23 +40,17 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         SetStartingValues();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (timer > 0)
+        if (!isWaiting && Input.GetButtonDown(ProjectileConstants.FireButton))
         {
-            timer -= Time.fixedDeltaTime;
-            return;
-        }
-
-        if (Input.GetButtonDown(ProjectileConstants.FireButton))
-        {
-            FireProjectile();
-            timer = CurrentRateOfFire;
+            StartCoroutine(FireProjectile());
         }
     }
 
-    public void FireProjectile()
+    private IEnumerator FireProjectile()
     {
+        isWaiting = true;
         GameObject newProjectile = Instantiate(
             currentProjectilePrefab, gunBarrel.transform.position, gunBarrel.transform.rotation);
         
@@ -66,6 +61,9 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         Physics2D.IgnoreCollision(newProjectile.GetComponent<Collider2D>(), PlayerManager.PlayerCollider);
 
         AudioManager.Instance.ProjectileAudio.Play();
+
+        yield return new WaitForSeconds(CurrentRateOfFire);
+        isWaiting = false;
     }
 
     public static void SetCurrentProjectile(GameObject projectilePrefab, AudioClip projectileSound)
@@ -79,5 +77,6 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         currentProjectilePrefab = defaultProjectilePrefab;
         AudioManager.Instance.ProjectileAudio.clip = defaultProjectileSound;
         CurrentRateOfFire = ProjectileConstants.DefaultRateOfFire;
+        isWaiting = false;
     }
 }
