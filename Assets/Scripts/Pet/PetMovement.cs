@@ -1,48 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PetMovement : MonoBehaviour
 {
-    public Sprite[] frameArray;
-    public SpriteRenderer spriteRenderer;
-
-    private GameObject playerObject;
-    private GameObject cameraObject;
-
     private Vector3 mousePosition;
     private Vector2 petDistance = new Vector2(1f, 0f);
 
-    private int currentFrame;
-    private float timer;
-    private float frameRate = 0.2f;
-
-    void Start()
-    {
-        playerObject = GameObject.FindGameObjectWithTag("Player");
-        cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
-    }
 
     private void Update()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        timer += Time.fixedDeltaTime;
-
-        if (timer >= frameRate)
-        {
-            timer -= frameRate;
-
-            // Reset currentFrame to 0 when it reaches the length of the array 
-            currentFrame = (currentFrame + 1) % frameArray.Length;
-
-            // Update the sprite being rendered 
-            spriteRenderer.sprite = frameArray[currentFrame];
-        }
-
         // Reverse direction of vector 
         Vector3 headDirection = mousePosition - transform.position;
 
@@ -51,7 +21,7 @@ public class PetMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
 
-        Vector2 playerPosition = playerObject.transform.position;
+        Vector2 playerPosition = PlayerManager.playerObject.transform.position;
         transform.position = playerPosition - petDistance;
     }
 }

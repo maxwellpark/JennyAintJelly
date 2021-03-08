@@ -1,24 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class PetInteraction : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.transform.tag == "Enemy" || collision.transform.tag == "BossProjectile")
+        if (collider.transform.CompareTag("Enemy") || collider.transform.CompareTag("BossProjectile"))
         {
-            Destroy(gameObject);
-            PlayerData.lives--;
-
-            //PauseMenu.playerDead = true;
-            //PauseMenu.TogglePauseMenu(); 
-
-            // reload the scene 
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-
-            //Application.Quit(); 
+            GameManager.ReloadLevel();
         }
     }
 }

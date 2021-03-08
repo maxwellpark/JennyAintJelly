@@ -76,35 +76,35 @@ public class EnemySpriteAnimator : MonoBehaviour
     {
         switch (direction)
         {
-            case Direction.up:
+            case Direction.Up:
                 frameArray = upFrames;
                 stationaryPosition = stationaryFrames[0];
                 break;
-            case Direction.upleft:
+            case Direction.UpLeft:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
                 break;
-            case Direction.left:
+            case Direction.Left:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
                 break;
-            case Direction.downleft:
+            case Direction.DownLeft:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
                 break;
-            case Direction.down:
+            case Direction.Down:
                 frameArray = downFrames;
                 stationaryPosition = stationaryFrames[2];
                 break;
-            case Direction.downright:
+            case Direction.DownRight:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
                 break;
-            case Direction.right:
+            case Direction.Right:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
                 break;
-            case Direction.upright:
+            case Direction.UpRight:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
                 break;

@@ -42,27 +42,11 @@ public class EnemyVFX : MonoBehaviour
 
         if (newAngle < threshold)
         {
-            enemySpriteAnimator.direction = Direction.right;
+            enemySpriteAnimator.direction = Direction.Right;
         }
         else
         {
-            enemySpriteAnimator.direction = Direction.left; 
+            enemySpriteAnimator.direction = Direction.Left; 
         }
-    }
-
-    void OnDrawGizmos()
-    {
-        //Gizmos.DrawLine(transform.position, petTransform.position);
-        //Gizmos.DrawLine(transform.position, transform.forward * Mathf.Infinity);
-
-        float totalFOV = 70.0f;
-        float rayRange = 10.0f;
-        float halfFOV = totalFOV / 2.0f;
-        Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
-        Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
-        Vector3 leftRayDirection = leftRayRotation * transform.forward;
-        Vector3 rightRayDirection = rightRayRotation * transform.forward;
-        Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
-        Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
     }
 }
