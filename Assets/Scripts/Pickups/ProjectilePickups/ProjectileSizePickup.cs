@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Pickups/ProjectileSizePickup", menuName = "ScriptableObjects/ProjectileSizePickup", order = 1)]
+[CreateAssetMenu(fileName = "ProjectileSizePickup", menuName = "ScriptableObjects/Pickups/ProjectileSizePickup", order = 1)]
 public class ProjectileSizePickup : Pickup
 {
     [SerializeField] private GameObject projectilePrefab;

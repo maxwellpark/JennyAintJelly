@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
 
-public enum SpriteType
-{
-    Player, Pet, Enemy
-}
-
 public class SpriteAnimator : MonoBehaviour
 {
     // The sprites to loop through when moving  
@@ -18,7 +13,7 @@ public class SpriteAnimator : MonoBehaviour
     
     // The sprites displayed when stationary  
     // Indices are: 0-3 WASD
-    public Sprite[] stationaryFrames;
+    [SerializeField] private Sprite[] stationaryFrames;
 
     // Stores the current stationary sprite
     private Sprite stationaryPosition;
@@ -30,10 +25,10 @@ public class SpriteAnimator : MonoBehaviour
     private float timer;
     private bool flipped;
 
-    private Vector3 movementVector;
+    [SerializeField] private Movement movement;
     public Direction Direction { get; set; }
 
-    private void Start()
+    public virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -44,14 +39,18 @@ public class SpriteAnimator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (PlayerMovement.movementVector == Vector2.zero)
+        Animate();
+    }
+
+    public virtual void Animate()
+    {
+        if (movement.MovementVector == Vector2.zero)
         {
             spriteRenderer.sprite = stationaryPosition;
         }
         else
         {
             UpdateFrameArray();
-
             timer += Time.fixedDeltaTime;
 
             // Do something every "frame",
@@ -64,9 +63,9 @@ public class SpriteAnimator : MonoBehaviour
                 currentFrame = (currentFrame + 1) % frameArray.Length;
 
                 // Flip sprite if moving left 
-                spriteRenderer.flipX = flipped ? true : false;
+                spriteRenderer.flipX = flipped;
 
-                // Update the sprite being renderer
+                // Update the sprite being rendered
                 spriteRenderer.sprite = frameArray[currentFrame];
             }
         }
@@ -74,9 +73,9 @@ public class SpriteAnimator : MonoBehaviour
 
     // Assign frameArray to the frames corresponding to 
     // the player's current direction 
-    private void UpdateFrameArray()
+    public virtual void UpdateFrameArray()
     {
-        switch (direction)
+        switch (Direction)
         {
             case Direction.Up:
                 frameArray = upFrames;

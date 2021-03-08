@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ProjectileManager : MonoBehaviour
+public class ProjectileManager : MonoBehaviour, ISingleton
 {
     public static ProjectileManager Instance { get; private set; }
 
@@ -15,6 +15,7 @@ public class ProjectileManager : MonoBehaviour
 
     public static float CurrentRateOfFire { get; set; }
     public static float CurrentDamage { get; set; }
+    private float timer;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class ProjectileManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        GameManager.OnLevelTransition += SetDefaults;
     }
 
     private void Start()
@@ -39,9 +41,16 @@ public class ProjectileManager : MonoBehaviour
 
     private void Update()
     {
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            return;
+        }
+
         if (Input.GetButtonDown(ProjectileConstants.FireButton))
         {
             FireProjectile();
+            timer = CurrentRateOfFire;
         }
     }
 
@@ -51,7 +60,7 @@ public class ProjectileManager : MonoBehaviour
             currentProjectilePrefab, gunBarrel.transform.position, gunBarrel.transform.rotation);
         
         Rigidbody2D rigidBody = newProjectile.GetComponent<Rigidbody2D>();
-        rigidBody.AddForce(gunBarrel.transform.up * CurrentRateOfFire, ForceMode2D.Impulse);
+        rigidBody.AddForce(gunBarrel.transform.up * ProjectileConstants.MuzzleVelocity, ForceMode2D.Impulse);
 
         // Make bullets pass through player 
         Physics2D.IgnoreCollision(newProjectile.GetComponent<Collider2D>(), PlayerManager.PlayerCollider);
@@ -65,7 +74,7 @@ public class ProjectileManager : MonoBehaviour
         projectileAudio.clip = projectileSound;
     }
 
-    private void SetDefaults()
+    public void SetDefaults()
     {
         currentProjectilePrefab = defaultProjectilePrefab;
         projectileAudio.clip = defaultProjectileSound;

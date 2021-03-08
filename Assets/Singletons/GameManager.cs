@@ -1,10 +1,21 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public enum GameState
+{
+	Play, Pause, Dead
+}
+
+public class GameManager : MonoBehaviour, ISingleton
 {
 	public static GameManager Instance { get; private set; }
-	private static string currentSceneName;
+
+	public static Dictionary<string, int> Levels;
+	public static string CurrentLevelName { get; set; }
+	public static int CurrentLevelNumber => Levels[CurrentLevelName];
+	public static event Action OnLevelTransition;
 
 	private void Awake()
 	{
@@ -18,9 +29,16 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
+
+		Levels = new Dictionary<string, int>()
+		{
+			{ "The Road", 1 },
+			{ "The Caves", 2 },
+			{ "Military Base", 3 }
+		};
 	}
 
-    private void Start()
+	private void Start()
     {
 		Screen.fullScreen = true;
 	}
@@ -33,6 +51,13 @@ public class GameManager : MonoBehaviour
 
 	public static void LoadNextLevel(string sceneName)
     {
-		SceneManager.LoadScene(sceneName);
+		CurrentLevelName = sceneName;
+		SceneManager.LoadScene(CurrentLevelName);
+		OnLevelTransition?.Invoke();
+    }
+
+	public void SetDefaults()
+    {
+
     }
 }

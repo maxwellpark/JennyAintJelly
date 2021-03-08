@@ -1,7 +1,7 @@
 ﻿public static class PlayerConstants
 {
     // Movement 
-    public static float MoveSpeed = 10f;
+    public static float DefaultMoveSpeed = 10f;
     public static float MaxMoveSpeed = 18f;
 
     // Tags

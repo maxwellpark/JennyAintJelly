@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, ISingleton
 {
 	public static PlayerManager Instance { get; private set; }
 
@@ -35,5 +35,13 @@ public class PlayerManager : MonoBehaviour
 
         petObject = GameObject.FindGameObjectWithTag(PlayerConstants.PetTag);
 		PetCollider = petObject.GetComponent<Collider2D>();
+
+		GameManager.OnLevelTransition += SetDefaults;
 	}
+
+	public void SetDefaults()
+    {
+		CurrentSpeed = PlayerConstants.DefaultMoveSpeed;
+		IsPlayerDead = false;
+    }
 }

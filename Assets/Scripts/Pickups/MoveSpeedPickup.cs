@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class ProjectileSpeedPickup : Pickup
+public class MoveSpeedPickup : Pickup
 {
     [SerializeField] private float speedIncrease;
 
     public override void Claim()
     {
-        ProjectileManager.CurrentRateOfFire += speedIncrease;
+        PlayerManager.CurrentSpeed += speedIncrease;
     }
 }
