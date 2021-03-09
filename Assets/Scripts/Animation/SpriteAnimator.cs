@@ -37,7 +37,7 @@ public abstract class SpriteAnimator : MonoBehaviour
         spriteRenderer.sprite = stationaryPosition;
     }
 
-    private void FixedUpdate()
+    public virtual void Update()
     {
         Animate();
     }
@@ -51,7 +51,7 @@ public abstract class SpriteAnimator : MonoBehaviour
         else
         {
             UpdateFrameArray();
-            timer += Time.fixedDeltaTime;
+            timer += Time.deltaTime;
 
             // Do something every "frame",
             // according to the frameRate defined above 

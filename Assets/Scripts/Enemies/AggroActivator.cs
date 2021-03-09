@@ -9,7 +9,10 @@ public class AggroActivator : MonoBehaviour
     {
         if (collision.CompareTag(PetConstants.PetTag))
         {
+            Debug.Log("Aggro collision");
+
             agent.SetDestination(PlayerManager.PetPosition);
+            Debug.Log("New destination: " + agent.destination);
         }
     }
 }
