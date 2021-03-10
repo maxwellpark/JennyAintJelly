@@ -7,6 +7,8 @@ TagManager:
   - Pet
   - Enemy
   - Projectile
+  - GunBarrel
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Foreground
   - Background
   - Wall
-  - 
+  - NavMesh
   - 
   - 
   - 
@@ -44,9 +46,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
+  - name: Background
     uniqueID: 3322821761
     locked: 0
-  - name: New Layer
+  - name: Midground
     uniqueID: 2677852381
+    locked: 0
+  - name: Foreground
+    uniqueID: 3775389405
     locked: 0

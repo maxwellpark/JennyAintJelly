@@ -1,63 +1,57 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpriteAnimator : MonoBehaviour
+public abstract class SpriteAnimator : MonoBehaviour
 {
     // The sprites to loop through when moving  
-    public Sprite[] upFrames;
-    public Sprite[] leftFrames;
-    public Sprite[] downFrames;
-    public Sprite[] rightFrames;
+    [SerializeField] private Sprite[] upFrames;
+    [SerializeField] private Sprite[] leftFrames;
+    [SerializeField] private Sprite[] downFrames;
+    [SerializeField] private Sprite[] rightFrames;
 
     // Stores the currently looping sprites 
     private Sprite[] frameArray;
     
     // The sprites displayed when stationary  
     // Indices are: 0-3 WASD
-    public Sprite[] stationaryFrames;
+    [SerializeField] private Sprite[] stationaryFrames;
 
     // Stores the current stationary sprite
     private Sprite stationaryPosition;
 
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField]
-    private float frameRate = 0.15f;
-
+    [SerializeField] private float frameRate;
     private int currentFrame;
     private float timer;
     private bool flipped;
 
-    public static Direction direction;
+    [SerializeField] private Movement movement;
+    public Direction Direction { get; set; }
 
-    void Start()
+    public virtual void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // Default stationary position is facing down 
         stationaryPosition = stationaryFrames[2];
         spriteRenderer.sprite = stationaryPosition;
-
-        // Set frame rate proportionally to movement speed 
-        // Enable this when not Serialized
-        // And set movementSpeed to static member*
-        //frameRate = PlayerMovement.movementSpeed / 1000; 
-
     }
 
-    void FixedUpdate()
+    public virtual void Update()
     {
-        if (PlayerMovement.movement == Vector2.zero)
+        Animate();
+    }
+
+    public virtual void Animate()
+    {
+        if (movement.MovementVector == Vector2.zero)
         {
             spriteRenderer.sprite = stationaryPosition;
         }
         else
         {
             UpdateFrameArray();
-
-            timer += Time.fixedDeltaTime;
+            timer += Time.deltaTime;
 
             // Do something every "frame",
             // according to the frameRate defined above 
@@ -69,9 +63,9 @@ public class SpriteAnimator : MonoBehaviour
                 currentFrame = (currentFrame + 1) % frameArray.Length;
 
                 // Flip sprite if moving left 
-                spriteRenderer.flipX = flipped ? true : false;
+                spriteRenderer.flipX = flipped;
 
-                // Update the sprite being renderer
+                // Update the sprite being rendered
                 spriteRenderer.sprite = frameArray[currentFrame];
             }
         }
@@ -79,46 +73,46 @@ public class SpriteAnimator : MonoBehaviour
 
     // Assign frameArray to the frames corresponding to 
     // the player's current direction 
-    private void UpdateFrameArray()
+    public virtual void UpdateFrameArray()
     {
-        switch (direction)
+        switch (Direction)
         {
-            case Direction.up:
+            case Direction.Up:
                 frameArray = upFrames;
                 stationaryPosition = stationaryFrames[0];
                 flipped = false;
                 break;
-            case Direction.upleft:
+            case Direction.UpLeft:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
                 flipped = false;
                 break;
-            case Direction.left:
+            case Direction.Left:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
                 flipped = false;
                 break;
-            case Direction.downleft:
+            case Direction.DownLeft:
                 frameArray = leftFrames;
                 stationaryPosition = stationaryFrames[1];
                 flipped = false;
                 break;
-            case Direction.down:
+            case Direction.Down:
                 frameArray = downFrames;
                 stationaryPosition = stationaryFrames[2];
                 flipped = false;
                 break;
-            case Direction.downright:
+            case Direction.DownRight:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
                 flipped = false;
                 break;
-            case Direction.right:
+            case Direction.Right:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
                 flipped = false;
                 break;
-            case Direction.upright:
+            case Direction.UpRight:
                 frameArray = rightFrames;
                 stationaryPosition = stationaryFrames[3];
                 flipped = false;

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class CustomCursor : MonoBehaviour
 {
@@ -11,36 +7,36 @@ public class CustomCursor : MonoBehaviour
 
     public Sprite cursorSprite;
     public Texture2D cursorTexture;
+    private SpriteRenderer spriteRenderer;
 
-    private float zRotation;
-
-    private SpriteRenderer sr;
+    Vector2 cursorPosition;
 
     //public CursorMode cursorMode = CursorMode.Auto;
     //public Vector2 hotSpot = Vector2.zero;
 
-    float zRotationSpeed = 5f;
-
-    void Start()
+    private void Start()
     {
         transform.position = Vector3.forward;
+        cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Cursor.visible = false;
-        sr = GetComponent<SpriteRenderer>();
-        sr.sprite = cursorSprite;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = cursorSprite;
 
         // We should set the cursor colour programmatically 
     }
 
-    void Update()
+    private void Update()
     {
-        Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPosition;
+
+        //Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //RotateCursor();
     }
 
-    void RotateCursor()
+    private void RotateCursor()
     {
-        transform.RotateAround(transform.position, Vector3.forward, zRotationSpeed * Time.deltaTime);
+        transform.RotateAround(
+            transform.position, Vector3.forward, PetConstants.ZRotationSpeed * Time.deltaTime);
     }
 }

@@ -1,79 +1,66 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum Direction
+public class PlayerMovement : Movement
 {
-    up, upleft, left, downleft, down, downright, right, upright
-}
+    //[SerializeField] private SpriteAnimator spriteAnimator;
 
-public class PlayerMovement : MonoBehaviour
-{
-    public static float speed = 10f;
-    public static float maxSpeed = 18f;
-
-    public static Vector2 movement;
-    private Vector3 mousePosition;
-
-
-    void Start()
+    private void Update()
     {
-        Screen.fullScreen = true;
-    }
-
-    void Update()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
+        MovementVector.x = Input.GetAxisRaw("Horizontal");
+        MovementVector.y = Input.GetAxisRaw("Vertical");
         SetDirection();
     }
 
     private void FixedUpdate()
     {
-        // Adjust for diagonal input 
-        if (movement.magnitude > 1f)
-        {
-            movement /= movement.magnitude;
-        }
-
-        Vector3 velocity = new Vector3(movement.x, movement.y, 0f);
-        transform.position += velocity * speed * Time.fixedDeltaTime;
+        Move();
     }
 
-    private void SetDirection()
+    public override void Move()
     {
-        if (movement == Vector2.up)
+        // Adjust for diagonal input 
+        if (MovementVector.magnitude > 1f)
         {
-            SpriteAnimator.direction = Direction.up;
+            MovementVector /= MovementVector.magnitude;
         }
-        else if (movement == new Vector2(-1f, 1f))
+
+        Vector3 velocity = new Vector3(MovementVector.x, MovementVector.y, 0f);
+        transform.position += velocity * PlayerManager.CurrentSpeed * Time.fixedDeltaTime;
+    }
+
+    public override void SetDirection()
+    {
+        if (MovementVector == Vector2.up)
         {
-            SpriteAnimator.direction = Direction.upleft;
+            SpriteAnimator.Direction = Direction.Up;
         }
-        else if (movement == Vector2.left)
+        else if (MovementVector == new Vector2(-1f, 1f))
         {
-            SpriteAnimator.direction = Direction.left;
+            SpriteAnimator.Direction = Direction.UpLeft;
         }
-        else if (movement == new Vector2(-1f, -1f))
+        else if (MovementVector == Vector2.left)
         {
-            SpriteAnimator.direction = Direction.downleft;
+            SpriteAnimator.Direction = Direction.Left;
         }
-        else if (movement == Vector2.down)
+        else if (MovementVector == new Vector2(-1f, -1f))
         {
-            SpriteAnimator.direction = Direction.down;
+            SpriteAnimator.Direction = Direction.DownLeft;
         }
-        else if (movement == new Vector2(1f, -1f))
+        else if (MovementVector == Vector2.down)
         {
-            SpriteAnimator.direction = Direction.downright;
+            SpriteAnimator.Direction = Direction.Down;
         }
-        else if (movement == Vector2.right)
+        else if (MovementVector == new Vector2(1f, -1f))
         {
-            SpriteAnimator.direction = Direction.right;
+            SpriteAnimator.Direction = Direction.DownRight;
         }
-        else if (movement == Vector2.one)
+        else if (MovementVector == Vector2.right)
         {
-            SpriteAnimator.direction = Direction.upright;
+            SpriteAnimator.Direction = Direction.Right;
+        }
+        else if (MovementVector == Vector2.one)
+        {
+            SpriteAnimator.Direction = Direction.UpRight;
         }
     }
 }
