@@ -11,7 +11,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip route1Clip;
     [SerializeField] AudioClip cavesClip;
     [SerializeField] AudioClip militaryBaseClip;
-
     [SerializeField] AudioClip reloadClip;
 
     private void Awake()

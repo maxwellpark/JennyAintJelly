@@ -12,11 +12,6 @@ public abstract class Movement : MonoBehaviour
     [SerializeField] private SpriteAnimator spriteAnimator;
     public SpriteAnimator SpriteAnimator { get => spriteAnimator; }
     
-    public abstract void Move();
+    public virtual void Move() { }
     public abstract void SetDirection();
-
-    private void Update()
-    {
-        SetDirection();
-    }
 }
