@@ -10,11 +10,12 @@ public class AggroActivator : MonoBehaviour
     {
         path = GetComponentInParent<AIPath>();
         destinationSetter = GetComponentInParent<AIDestinationSetter>();
+        destinationSetter.target = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag(PetConstants.PetTag))
+        if (destinationSetter.target is null && collision.CompareTag(PetConstants.PetTag))
         {
             Debug.Log("Aggro collision");
 

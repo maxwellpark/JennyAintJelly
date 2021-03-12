@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class EnemyMovement : Movement
 {
-    Vector3 lastPosition;
-    Vector3 lastDirection;
-
+    [SerializeField] Rigidbody2D rigidBody;
     [SerializeField] AIDestinationSetter destinationSetter;
+
+    private Vector3 lastPosition;
 
     private void Start()
     {
@@ -16,42 +16,63 @@ public class EnemyMovement : Movement
 
     private void Update()
     {
+        MovementVector = transform.position - lastPosition;
         SetDirection();
+        lastPosition = transform.position;
     }
 
     public override void SetDirection()
     {
-        Vector3 velocity = transform.position - lastPosition;
-        Vector3 direction = transform.TransformDirection(velocity);
+        SpriteAnimator.Direction = CalculateNextDirection(MovementVector);
 
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        Debug.Log(MovementVector);
+    }
+
+    private Direction CalculateNextDirection(Vector3 movement)
+    {
+        Direction nextDirection;
+        Vector3 normalised = movement.normalized;
+
+        if (normalised.y > 0.1f)
         {
-            if (direction.x >= 0)
+            // Go up
+            if (normalised.y > Mathf.Abs(normalised.x) + 0.1f) // Leeway
             {
-                // Right
-                SpriteAnimator.Direction = Direction.Right;
+                nextDirection = Direction.Up;
             }
             else
             {
-                // Left
-                SpriteAnimator.Direction = Direction.Left;
+                if (normalised.x > 0.1f)
+                {
+                    nextDirection = Direction.Right;
+
+                }
+                else
+                {
+                    nextDirection = Direction.Left;
+                }
             }
         }
         else
         {
-            if (direction.y >= 0)
+            if (Mathf.Abs(normalised.y) > Mathf.Abs(normalised.x) + 0.1f) // Leeway
             {
-                // Up
-                SpriteAnimator.Direction = Direction.Up;
+                nextDirection = Direction.Down;
             }
             else
             {
-                // Down
-                SpriteAnimator.Direction = Direction.Down;
+                if (normalised.x > 0.1f)
+                {
+                    nextDirection = Direction.Right;
+
+                }
+                else
+                {
+                    nextDirection = Direction.Left;
+                }
             }
         }
-
-        Debug.Log(direction);
-        lastDirection = direction;
+        
+        return nextDirection;
     }
 }

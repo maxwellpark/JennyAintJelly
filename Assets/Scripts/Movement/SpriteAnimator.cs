@@ -26,7 +26,7 @@ public abstract class SpriteAnimator : MonoBehaviour
     private bool flipped;
 
     [SerializeField] private Movement movement;
-    public Direction Direction { get; set; }
+    public Direction Direction;
 
     public virtual void Start()
     {

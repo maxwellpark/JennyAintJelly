@@ -166,6 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementVector: {x: 0, y: 0}
   spriteAnimator: {fileID: 3636676214058855496}
+  rigidBody: {fileID: 1635822435900687076}
   destinationSetter: {fileID: 7027498485116803427}
 --- !u!114 &7027498485116803427
 MonoBehaviour:
@@ -188,18 +189,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635822435900687074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 985898ad919925f4e87c0a78ce48d6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upFrames: []
-  leftFrames: []
-  downFrames: []
-  rightFrames: []
-  stationaryFrames: []
-  frameRate: 0
-  movement: {fileID: 0}
+  upFrames:
+  - {fileID: 21300000, guid: 9114ae568aaa747e1a5fd64c88365e1a, type: 3}
+  - {fileID: 21300000, guid: 573da2a6967fc456dbcf808713038a4a, type: 3}
+  leftFrames:
+  - {fileID: 21300000, guid: 9e236648fc08842b1b1e59977f2cb837, type: 3}
+  - {fileID: 21300000, guid: 5b013704270934abf9c7202c054b4c6e, type: 3}
+  downFrames:
+  - {fileID: 21300000, guid: 8170a5b4616a14764b847e5958d5c7b1, type: 3}
+  - {fileID: 21300000, guid: ea95ab3b7784b4d918611c22b68279b3, type: 3}
+  rightFrames:
+  - {fileID: 21300000, guid: fe21071b6e919427c801cf22f4092203, type: 3}
+  - {fileID: 21300000, guid: 9adf16470b1634f129851481a4e7c0f4, type: 3}
+  stationaryFrames:
+  - {fileID: 21300000, guid: 9b0488d79b4534caea9c1e0926b292db, type: 3}
+  - {fileID: 21300000, guid: 9e236648fc08842b1b1e59977f2cb837, type: 3}
+  - {fileID: 21300000, guid: f444c429a83634fdabcb3543f2b2b9b5, type: 3}
+  - {fileID: 21300000, guid: 9adf16470b1634f129851481a4e7c0f4, type: 3}
+  frameRate: 0.2
+  movement: {fileID: 1131011986180407151}
+  Direction: 0
 --- !u!114 &6688957548086306907
 MonoBehaviour:
   m_ObjectHideFlags: 0
