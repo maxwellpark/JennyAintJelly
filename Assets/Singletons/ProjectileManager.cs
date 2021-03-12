@@ -76,6 +76,16 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         }
     }
 
+    public static void HaltProjectile(Projectile projectile)
+    {
+        if (projectile != null)
+        {
+            Rigidbody2D rigidBody = projectile.GetComponent<Rigidbody2D>();
+            rigidBody.velocity = Vector2.zero;
+            rigidBody.angularVelocity = 0f;
+        }
+    }
+
     public static void DestroyAllProjectiles()
     {
         GameObject[] projectiles = GameObject.FindGameObjectsWithTag(ProjectileConstants.ProjectileTag);
@@ -102,9 +112,9 @@ public class ProjectileManager : MonoBehaviour, ISingleton
 
     public void SetDefaults()
     {
-        DestroyAllProjectiles();
         currentProjectilePrefab = defaultProjectilePrefab;
         AudioManager.Instance.ProjectileAudio.clip = defaultProjectileSound;
+        CurrentDamage = ProjectileConstants.DefaultDamage;
         CurrentRateOfFire = ProjectileConstants.DefaultRateOfFire;
         isWaiting = false;
     }

@@ -8,6 +8,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed;
     public float MoveSpeed { get => moveSpeed; }
 
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
+
     public virtual void CatchPet()
     {
         GameManager.CurrentState = GameState.GameOver;
@@ -33,10 +38,6 @@ public class Enemy : MonoBehaviour
         if (collision.CompareTag(PetConstants.PetTag))
         {
             CatchPet();
-        }
-        else if (collision.CompareTag(ProjectileConstants.ProjectileTag))
-        {
-            TakeDamage();
         }
     }
 }

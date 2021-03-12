@@ -1,5 +1,6 @@
 ﻿public static class ProjectileConstants
 {
+    public static int DefaultDamage = 2;
     public static float DefaultRateOfFire = 1f;
     public static float MuzzleVelocity = 25f;
     public static float DecayTime = 2.5f;
