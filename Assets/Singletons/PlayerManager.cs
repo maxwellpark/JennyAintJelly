@@ -1,24 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour, ISingleton
 {
 	public static PlayerManager Instance { get; private set; }
 
 	// Player state 
-	private static GameObject playerObject;
+	public static GameObject Player;
 	public static Collider2D PlayerCollider;
-	public static Transform PlayerTransform => playerObject.transform;
-	public static Vector3 PlayerPosition { get => PlayerTransform.position; set => PlayerTransform.position = value; }
-	public static Vector3 PlayerRotation { get => PlayerTransform.eulerAngles; set => PlayerTransform.eulerAngles = value; }
 	public static float CurrentSpeed { get; set; }
-	public static bool IsPlayerDead { get; set; }
 
 	// Pet state 
-	private static GameObject petObject;
+	public static GameObject Pet;
 	public static Collider2D PetCollider;
-	public static Transform PetTransform => petObject.transform;
-	public static Vector3 PetPosition => PetTransform.position;
-	public static Vector3 PetRotation => PetTransform.eulerAngles;
 
     private void Awake()
 	{
@@ -32,19 +26,31 @@ public class PlayerManager : MonoBehaviour, ISingleton
 			Destroy(gameObject);
 			return;
 		}
-		playerObject = GameObject.FindGameObjectWithTag(PlayerConstants.PlayerTag);
-		PlayerCollider = playerObject.GetComponent<Collider2D>();
+		Init();
+		SceneManager.sceneLoaded += Init;
+    }
 
-        petObject = GameObject.FindGameObjectWithTag(PetConstants.PetTag);
-		PetCollider = petObject.GetComponent<Collider2D>();
+	public void Init()
+	{
+		// Get player references 
+		Player = GameObject.FindGameObjectWithTag(PlayerConstants.PlayerTag);
+		PlayerCollider = Player.GetComponent<Collider2D>();
 
-		SetStartingValues();
-		GameManager.OnLevelTransition += SetStartingValues;
+		// Get pet references
+		Pet = GameObject.FindGameObjectWithTag(PetConstants.PetTag);
+		PetCollider = Pet.GetComponent<Collider2D>();
+
+		SetDefaults();
 	}
 
-	public void SetStartingValues()
+	// Subscribe this to the SceneManager's sceneLoaded event 
+	public void Init(Scene scene, LoadSceneMode mode)
+    {
+		Init();
+	}
+
+	public void SetDefaults()
     {
 		CurrentSpeed = PlayerConstants.DefaultMoveSpeed;
-		IsPlayerDead = false;
     }
 }

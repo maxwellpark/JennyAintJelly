@@ -11,11 +11,11 @@ public static class MovementUtils
     {
         if (axis == Axis.X)
         {
-            return Mathf.Abs(input.x) > Mathf.Abs(input.y);
+            return Mathf.Abs(input.x) + MovementConstants.DirectionThreshold > Mathf.Abs(input.y);
         }
         else if (axis == Axis.Y)
         {
-            return Mathf.Abs(input.y) > Mathf.Abs(input.x);
+            return Mathf.Abs(input.y) > Mathf.Abs(input.x) + MovementConstants.DirectionThreshold;
         }
         return false;
     }

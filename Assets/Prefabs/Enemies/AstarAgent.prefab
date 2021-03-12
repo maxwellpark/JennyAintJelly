@@ -166,7 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementVector: {x: 0, y: 0}
   spriteAnimator: {fileID: 3636676214058855496}
-  rigidBody: {fileID: 1635822435900687076}
   destinationSetter: {fileID: 7027498485116803427}
 --- !u!114 &7027498485116803427
 MonoBehaviour:
@@ -322,6 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f3d63713b2c940946608d0900831b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyToAgrro: {fileID: 8791521424219429669}
+  enemyPath: {fileID: 7404646814857958114}
+  destinationSetter: {fileID: 7027498485116803427}
 --- !u!61 &7696532284419227270
 BoxCollider2D:
   m_ObjectHideFlags: 0

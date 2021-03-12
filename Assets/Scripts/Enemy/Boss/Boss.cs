@@ -18,6 +18,6 @@ public class Boss : MonoBehaviour
     {
         GameObject newRocket = Instantiate(rocketPrefab, gunBarrel.transform.position, gunBarrel.transform.rotation);
         NavMeshAgent rocketAgent = newRocket.GetComponent<NavMeshAgent>();
-        rocketAgent.SetDestination(PlayerManager.PetPosition);
+        rocketAgent.SetDestination(PlayerManager.Pet.transform.position);
     }
 }

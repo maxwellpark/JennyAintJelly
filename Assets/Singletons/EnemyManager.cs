@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour, ISingleton
 {
@@ -18,7 +19,19 @@ public class EnemyManager : MonoBehaviour, ISingleton
 			Destroy(gameObject);
 			return;
 		}
-		GameManager.OnLevelTransition += SetEnemyScaling;
+		Init();
+		SceneManager.sceneLoaded += Init;
+	}
+
+	public void Init()
+	{
+		SetDefaults();
+		SetEnemyScaling();
+	}
+
+	public void Init(Scene scene, LoadSceneMode mode)
+	{
+		Init();
 	}
 
 	// Scale up health each level 
@@ -33,6 +46,9 @@ public class EnemyManager : MonoBehaviour, ISingleton
 			case Level.Caves:
 				
 				break;
+			case Level.CavesBoss:
+
+				break;
 			case Level.MilitaryBase:
 				
 				break;
@@ -44,7 +60,7 @@ public class EnemyManager : MonoBehaviour, ISingleton
 		return GameObject.FindGameObjectsWithTag(EnemyConstants.EnemyTag);
     }
 
-	public void SetStartingValues()
+	public void SetDefaults()
     {
 		enemies = GetEnemies();
     }

@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class AggroActivator : MonoBehaviour
 {
-    private AIPath path;
-    private AIDestinationSetter destinationSetter;
+    [SerializeField] private Enemy enemyToAgrro;
+    [SerializeField] private AIPath enemyPath;
+    [SerializeField] private AIDestinationSetter destinationSetter;
 
     private void Start()
     {
-        path = GetComponentInParent<AIPath>();
-        destinationSetter = GetComponentInParent<AIDestinationSetter>();
         destinationSetter.target = null;
     }
 
@@ -17,17 +16,9 @@ public class AggroActivator : MonoBehaviour
     {
         if (destinationSetter.target is null && collision.CompareTag(PetConstants.PetTag))
         {
-            Debug.Log("Aggro collision");
-
-            destinationSetter.target = PlayerManager.PetTransform;
-            path.enabled = true;
-            path.maxSpeed = 10;
+            destinationSetter.target = PlayerManager.Pet.transform;
+            enemyPath.enabled = true;
+            enemyPath.maxSpeed = enemyToAgrro.MoveSpeed;
         }
-    }
-
-    private void LogAI()
-    {
-        Debug.Log("Can move = " + path.canMove);
-        Debug.Log("Is stopped = " + path.isStopped);
     }
 }

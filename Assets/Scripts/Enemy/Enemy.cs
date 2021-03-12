@@ -6,9 +6,11 @@ public class Enemy : MonoBehaviour
     private float currentHealth;
     
     [SerializeField] private float moveSpeed;
+    public float MoveSpeed { get => moveSpeed; }
 
     public virtual void CatchPet()
     {
+        GameManager.CurrentState = GameState.GameOver;
         GameManager.ReloadLevel();
     }
 
@@ -28,13 +30,13 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.CompareTag(PetConstants.PetTag))
-        //{
-        //    CatchPet();
-        //}
-        //else if (collision.CompareTag(ProjectileConstants.ProjectileTag))
-        //{
-        //    TakeDamage();
-        //}
+        if (collision.CompareTag(PetConstants.PetTag))
+        {
+            CatchPet();
+        }
+        else if (collision.CompareTag(ProjectileConstants.ProjectileTag))
+        {
+            TakeDamage();
+        }
     }
 }

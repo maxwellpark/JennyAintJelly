@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class EnemyMovement : Movement
 {
-    [SerializeField] Rigidbody2D rigidBody;
-    [SerializeField] AIDestinationSetter destinationSetter;
-
+    [SerializeField] private AIDestinationSetter destinationSetter;
     private Vector3 lastPosition;
 
     private void Start()
     {
         lastPosition = transform.position;
-        lastDirection = Vector3.zero;
     }
 
     private void Update()
@@ -24,8 +21,6 @@ public class EnemyMovement : Movement
     public override void SetDirection()
     {
         SpriteAnimator.Direction = CalculateNextDirection(MovementVector);
-
-        Debug.Log(MovementVector);
     }
 
     private Direction CalculateNextDirection(Vector3 movement)
@@ -33,46 +28,30 @@ public class EnemyMovement : Movement
         Direction nextDirection;
         Vector3 normalised = movement.normalized;
 
-        if (normalised.y > 0.1f)
+        if (MovementUtils.IsCoordAboveThreshold(normalised, Axis.Y))
         {
-            // Go up
-            if (normalised.y > Mathf.Abs(normalised.x) + 0.1f) // Leeway
+            // It either needs to be facing up or left/right 
+            if (MovementUtils.IsAxisDominant(normalised, Axis.Y)) 
             {
                 nextDirection = Direction.Up;
             }
             else
             {
-                if (normalised.x > 0.1f)
-                {
-                    nextDirection = Direction.Right;
-
-                }
-                else
-                {
-                    nextDirection = Direction.Left;
-                }
+                nextDirection = MovementUtils.IsCoordAboveThreshold(normalised, Axis.X) ? Direction.Right : Direction.Left;
             }
         }
         else
         {
-            if (Mathf.Abs(normalised.y) > Mathf.Abs(normalised.x) + 0.1f) // Leeway
+            // It needs to be facing down or left/right 
+            if (MovementUtils.IsAxisDominant(normalised, Axis.Y))
             {
                 nextDirection = Direction.Down;
             }
             else
             {
-                if (normalised.x > 0.1f)
-                {
-                    nextDirection = Direction.Right;
-
-                }
-                else
-                {
-                    nextDirection = Direction.Left;
-                }
+                nextDirection = MovementUtils.IsCoordAboveThreshold(normalised, Axis.X) ? Direction.Right : Direction.Left;
             }
         }
-        
         return nextDirection;
     }
 }
