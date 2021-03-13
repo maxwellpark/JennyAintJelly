@@ -3,7 +3,7 @@
 public class ProjectileCollider : MonoBehaviour
 {
     [SerializeField] private Enemy enemyToCheck;
-    [SerializeField] private AggroActivator aggroActivator;
+    [SerializeField] private AggroCollider aggroActivator;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

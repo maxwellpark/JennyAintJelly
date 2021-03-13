@@ -1,7 +1,7 @@
 ﻿using Pathfinding;
 using UnityEngine;
 
-public class AggroActivator : MonoBehaviour
+public class AggroCollider : MonoBehaviour
 {
     [SerializeField] private EnemyMovement enemyMovement;
     [SerializeField] private AIPath enemyPath;

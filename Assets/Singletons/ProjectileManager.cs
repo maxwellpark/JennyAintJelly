@@ -42,7 +42,9 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         gunBarrel = GameObject.FindGameObjectWithTag(ProjectileConstants.GunBarrelTag);
         Crosshair = GameObject.FindGameObjectWithTag(ProjectileConstants.CrosshairTag)
             .GetComponent<Crosshair>();
-        
+
+        Physics2D.IgnoreLayerCollision(
+            ProjectileConstants.ProjectileLayer, ProjectileConstants.ProjectileLayer);
         SetDefaults();
     }
 
@@ -54,7 +56,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
 
     private void Update()
     {
-        if (!isWaitingToFire && Input.GetButtonDown(ProjectileConstants.FireButton))
+        if (!isWaitingToFire && Input.GetButton(ProjectileConstants.FireButton))
         {
             StartCoroutine(FireProjectile());
         }
@@ -72,8 +74,9 @@ public class ProjectileManager : MonoBehaviour, ISingleton
             rigidBody.mass = CurrentMass;
             rigidBody.AddForce(gunBarrel.transform.up * ProjectileConstants.MuzzleVelocity, ForceMode2D.Impulse);
 
-            // Make bullets pass through player 
-            Physics2D.IgnoreCollision(newProjectile.GetComponent<Collider2D>(), PlayerManager.PlayerCollider);
+            // Make bullets pass through the player 
+            Collider2D collider = newProjectile.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(collider, PlayerManager.PlayerCollider);
 
             AudioManager.Instance.ProjectileAudio.Play();
 

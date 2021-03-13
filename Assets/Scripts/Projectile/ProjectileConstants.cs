@@ -12,4 +12,6 @@
     public static string GunBarrelTag = "GunBarrel";
     public static string ProjectileTag = "Projectile";
     public static string CrosshairTag = "Crosshair";
+
+    public static int ProjectileLayer = 13;
 }

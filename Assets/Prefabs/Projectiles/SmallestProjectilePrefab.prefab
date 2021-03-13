@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1382943702910619003}
   - component: {fileID: 3655609560829851561}
   - component: {fileID: -1290187359722463954}
-  m_Layer: 0
-  m_Name: SmallestProjectile
+  m_Layer: 13
+  m_Name: SmallestProjectilePrefab
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
