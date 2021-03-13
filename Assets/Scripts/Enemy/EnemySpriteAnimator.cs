@@ -12,6 +12,7 @@ public class EnemySpriteAnimator : SpriteAnimator
     //    {
     //        UpdateFrameArray();
     //        timer += Time.deltaTime;
+    //        timer += 0.00001f; 
     //        Debug.Log("Dt = " + Time.deltaTime);
     //        Debug.Log("Anim frame = " + currentFrame);
     //        if (timer >= frameRate)
