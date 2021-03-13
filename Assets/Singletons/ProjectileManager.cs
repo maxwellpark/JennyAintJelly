@@ -17,6 +17,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
 
     public static Crosshair Crosshair { get; set; }
     public static float CurrentDamage { get; set; }
+    public static float CurrentMass { get; set; }
     public static float CurrentRateOfFire { get; set; }
     private bool isWaitingToFire;
 
@@ -68,6 +69,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
                 currentProjectilePrefab, gunBarrel.transform.position, gunBarrel.transform.rotation);
         
             Rigidbody2D rigidBody = newProjectile.GetComponent<Rigidbody2D>();
+            rigidBody.mass = CurrentMass;
             rigidBody.AddForce(gunBarrel.transform.up * ProjectileConstants.MuzzleVelocity, ForceMode2D.Impulse);
 
             // Make bullets pass through player 
@@ -102,7 +104,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         }
     }
 
-    public static void SetCurrentProjectile(GameObject projectilePrefab, AudioClip projectileSound)
+    public static void SetCurrentProjectile(GameObject projectilePrefab, AudioClip projectileSound, float projectileMassIncrease = 0)
     {
         if (projectilePrefab != null)
         {
@@ -112,6 +114,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         {
             AudioManager.Instance.ProjectileAudio.clip = projectileSound;
         }
+        CurrentMass += projectileMassIncrease;
     }
 
     public void SetDefaults()
@@ -119,6 +122,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         currentProjectilePrefab = defaultProjectilePrefab;
         AudioManager.Instance.ProjectileAudio.clip = defaultProjectileSound;
         CurrentDamage = ProjectileConstants.DefaultDamage;
+        CurrentMass = ProjectileConstants.DefaultMass;
         CurrentRateOfFire = ProjectileConstants.DefaultRateOfFire;
         isWaitingToFire = false;
     }

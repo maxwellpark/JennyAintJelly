@@ -10,6 +10,7 @@ TagManager:
   - GunBarrel
   - Boss
   - Crosshair
+  - Pickup
   layers:
   - Default
   - TransparentFX

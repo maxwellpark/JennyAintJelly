@@ -4,9 +4,6 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float maxHealth;
     private float currentHealth;
-    
-    [SerializeField] private float moveSpeed;
-    public float MoveSpeed { get => moveSpeed; }
 
     private void Awake()
     {

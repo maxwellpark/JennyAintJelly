@@ -7,10 +7,10 @@ public class ProjectileSizePickup : Pickup
     [SerializeField] private AudioClip projectileSoundEffect;
 
     // Larger projectiles can have larger masses
-    [SerializeField] private float projectileMass;
+    [SerializeField] private float projectileMassIncrease;
 
     public override void Claim()
     {
-        ProjectileManager.SetCurrentProjectile(projectilePrefab, projectileSoundEffect);
+        ProjectileManager.SetCurrentProjectile(projectilePrefab, projectileSoundEffect, projectileMassIncrease);
     }
 }
