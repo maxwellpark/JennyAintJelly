@@ -19,12 +19,15 @@ public class Enemy : MonoBehaviour
         GameManager.ReloadLevel();
     }
 
-    public virtual void TakeDamage()
+    public virtual void TakeDamage(Projectile projectile)
     {
         currentHealth -= ProjectileManager.CurrentDamage;
         if (currentHealth <= 0)
         {
             Die();
+
+            // Stop the projectile moving when the enemy object is destroyed
+            ProjectileManager.HaltProjectile(projectile);
         }
     }
 

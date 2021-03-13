@@ -3,29 +3,29 @@
 public abstract class SpriteAnimator : MonoBehaviour
 {
     // The sprites to loop through when moving  
-    [SerializeField] private Sprite[] upFrames;
-    [SerializeField] private Sprite[] leftFrames;
-    [SerializeField] private Sprite[] downFrames;
-    [SerializeField] private Sprite[] rightFrames;
+    [SerializeField] protected Sprite[] upFrames;
+    [SerializeField] protected Sprite[] leftFrames;
+    [SerializeField] protected Sprite[] downFrames;
+    [SerializeField] protected Sprite[] rightFrames;
 
     // Stores the currently looping sprites 
-    private Sprite[] frameArray;
+    protected Sprite[] frameArray;
     
     // The sprites displayed when stationary  
     // Indices are: 0-3 WASD
-    [SerializeField] private Sprite[] stationaryFrames;
+    [SerializeField] protected Sprite[] stationaryFrames;
 
     // Stores the current stationary sprite
-    private Sprite stationaryPosition;
+    protected Sprite stationaryPosition;
 
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
-    [SerializeField] private float frameRate;
-    private int currentFrame;
-    private float timer;
-    private bool flipped;
+    [SerializeField] protected float frameRate;
+    protected int currentFrame;
+    protected float timer;
+    protected bool flipped;
 
-    [SerializeField] private Movement movement;
+    [SerializeField] protected Movement movement;
     public Direction Direction;
 
     public virtual void Start()
@@ -72,8 +72,8 @@ public abstract class SpriteAnimator : MonoBehaviour
     }
 
     // Assign frameArray to the frames corresponding to 
-    // the player's current direction 
-    public virtual void UpdateFrameArray()
+    // the object's current direction 
+    public void UpdateFrameArray()
     {
         switch (Direction)
         {
