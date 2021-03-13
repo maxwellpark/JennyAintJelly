@@ -74,7 +74,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9346a90de7acf4840926d11866703b53, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -371,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultProjectilePrefab: {fileID: 7810482897859241445, guid: f24a4b544bbf87b4189ee2313b3b5076, type: 3}
+  projectileAudio: {fileID: 0}
   defaultProjectileSound: {fileID: 8300000, guid: 9346a90de7acf4840926d11866703b53, type: 3}
 --- !u!114 &2909474757690461275
 MonoBehaviour:
@@ -386,6 +387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicAudio: {fileID: 6398883072932842638}
   ProjectileAudio: {fileID: 4429255500693420689}
-  route1Track: {fileID: 0}
-  cavesTrack: {fileID: 0}
-  militaryBaseTrack: {fileID: 0}
+  ProjectileReloadAudio: {fileID: 0}
+  route1Clip: {fileID: 0}
+  cavesClip: {fileID: 0}
+  cavesBossClip: {fileID: 0}
+  militaryBaseClip: {fileID: 0}
+  reloadClip: {fileID: 0}

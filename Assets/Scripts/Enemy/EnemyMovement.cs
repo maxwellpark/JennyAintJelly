@@ -6,6 +6,9 @@ public class EnemyMovement : Movement
     [SerializeField] private AIDestinationSetter destinationSetter;
     private Vector3 lastPosition;
 
+    [SerializeField] private float moveSpeed;
+    public float MoveSpeed { get => moveSpeed; }
+
     private void Start()
     {
         lastPosition = transform.position;

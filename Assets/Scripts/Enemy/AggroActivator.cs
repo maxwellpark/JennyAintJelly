@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AggroActivator : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyToAgrro;
+    [SerializeField] private EnemyMovement enemyMovement;
     [SerializeField] private AIPath enemyPath;
     public AIDestinationSetter destinationSetter;
 
@@ -26,6 +26,6 @@ public class AggroActivator : MonoBehaviour
     {
         destinationSetter.target = PlayerManager.Pet.transform;
         enemyPath.enabled = true;
-        enemyPath.maxSpeed = enemyToAgrro.MoveSpeed;
+        enemyPath.maxSpeed = enemyMovement.MoveSpeed;
     }
 }
