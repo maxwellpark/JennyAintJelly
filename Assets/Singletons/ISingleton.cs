@@ -1,4 +1,8 @@
-﻿public interface ISingleton
+﻿using UnityEngine.SceneManagement;
+
+public interface ISingleton
 {
-    void SetStartingValues();
+    void Init();
+    void Init(Scene scene, LoadSceneMode mode);
+    void SetDefaults();
 }

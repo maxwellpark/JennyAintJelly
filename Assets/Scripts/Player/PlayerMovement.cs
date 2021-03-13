@@ -2,8 +2,6 @@
 
 public class PlayerMovement : Movement
 {
-    //[SerializeField] private SpriteAnimator spriteAnimator;
-
     private void Update()
     {
         MovementVector.x = Input.GetAxisRaw("Horizontal");

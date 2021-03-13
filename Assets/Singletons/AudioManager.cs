@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    // Sources
     public AudioSource MusicAudio;
     public AudioSource ProjectileAudio;
     public AudioSource ProjectileReloadAudio;
 
-    [SerializeField] AudioClip route1Clip;
-    [SerializeField] AudioClip cavesClip;
-    [SerializeField] AudioClip militaryBaseClip;
-
-    [SerializeField] AudioClip reloadClip;
+    // Clips
+    [SerializeField] private AudioClip route1Clip;
+    [SerializeField] private AudioClip cavesClip;
+    [SerializeField] private AudioClip cavesBossClip;
+    [SerializeField] private AudioClip militaryBaseClip;
+    [SerializeField] private AudioClip reloadClip;
 
     private void Awake()
     {
@@ -26,22 +29,28 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        GameManager.OnLevelTransition += ChangeTrack;
+        SceneManager.sceneLoaded += ChangeTrack;
     }
 
-    private void ChangeTrack()
+    private void ChangeTrack(Scene scene, LoadSceneMode mode)
     {
-        switch (GameManager.CurrentLevel)
+        if (MusicAudio != null)
         {
-            case Level.Route1:
-                MusicAudio.clip = route1Clip;
-                break;
-            case Level.Caves:
-                MusicAudio.clip = cavesClip;
-                break;
-            case Level.MilitaryBase:
-                MusicAudio.clip = militaryBaseClip;
-                break;
+            switch (GameManager.CurrentLevel)
+            {
+                case Level.Route1:
+                    MusicAudio.clip = route1Clip;
+                    break;
+                case Level.Caves:
+                    MusicAudio.clip = cavesClip;
+                    break;
+                case Level.CavesBoss:
+                    MusicAudio.clip = cavesBossClip;
+                    break;
+                case Level.MilitaryBase:
+                    MusicAudio.clip = militaryBaseClip;
+                    break;
+            }
         }
         MusicAudio.Play();
         MusicAudio.loop = true;

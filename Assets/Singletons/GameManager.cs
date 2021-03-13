@@ -4,18 +4,19 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
-	Play, Pause, Dead
+	Play, Pause, GameOver
 }
 
 public enum Level
 {
-	Route1, Caves, MilitaryBase
+	Route1, Caves, CavesBoss, MilitaryBase
 }
 
 public class GameManager : MonoBehaviour, ISingleton
 {
 	public static GameManager Instance { get; private set; }
 
+	public static GameState CurrentState { get; set; }
 	public static Level CurrentLevel { get; set; }
 	public static event Action OnLevelTransition;
 
@@ -32,13 +33,25 @@ public class GameManager : MonoBehaviour, ISingleton
 			return;
 		}
 		Screen.fullScreen = true;
+		SceneManager.sceneLoaded += Init;
+	}
+
+	public void Init() 
+	{
+		SetDefaults();
+	}
+
+	// Subscribe this to the SceneManager's sceneLoaded event 
+	public void Init(Scene scene, LoadSceneMode mode) 
+	{
+		Init();
 	}
 
 	public static void ReloadLevel()
     {
 		Scene scene = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(scene.name);
-		OnLevelTransition?.Invoke();
+		CurrentState = GameState.Play;
 	}
 
 	public static void LoadNextLevel(Level nextLevel)
@@ -46,7 +59,6 @@ public class GameManager : MonoBehaviour, ISingleton
 		CurrentLevel = nextLevel;
 		string nextSceneName = GetSceneName();
 		SceneManager.LoadScene(nextSceneName);
-		OnLevelTransition?.Invoke();
     }
 
 	public static string GetSceneName()
@@ -54,7 +66,7 @@ public class GameManager : MonoBehaviour, ISingleton
 		return Enum.GetName(typeof(Level), CurrentLevel);
 	}
 
-	public void SetStartingValues()
+	public void SetDefaults()
     {
 		Debug.Log("Scene loaded: " + GetSceneName());
     }

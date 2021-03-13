@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - GunBarrel
   - Boss
+  - Crosshair
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Background
   - Wall
   - NavMesh
-  - 
+  - ObstacleTile
   - 
   - 
   - 
