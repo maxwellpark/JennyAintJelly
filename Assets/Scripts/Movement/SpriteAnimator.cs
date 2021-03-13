@@ -57,7 +57,7 @@ public abstract class SpriteAnimator : MonoBehaviour
             // according to the frameRate defined above 
             if (timer >= frameRate)
             {
-                timer -= frameRate;
+                timer = 0f;
 
                 // Reset currentFrame to 0 when it reaches the length of the array 
                 currentFrame = (currentFrame + 1) % frameArray.Length;

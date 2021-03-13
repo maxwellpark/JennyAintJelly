@@ -2,12 +2,10 @@
 
 public class Crosshair : MonoBehaviour
 {
-    public GameObject hitCursorPrefab;
-    public GameObject missCursorPrefab;
-
-    public Texture2D cursorTexture;
-    
     [SerializeField] private Sprite cursorSprite;
+    [SerializeField] private Sprite hitCursorSprite;
+    [SerializeField] private Sprite missCursorSprite;
+
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private Vector2 cursorPosition;
@@ -19,25 +17,26 @@ public class Crosshair : MonoBehaviour
         Cursor.visible = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = cursorSprite;
-
-        // We should set the cursor colour programmatically 
     }
 
     private void Update()
     {
         cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPosition;
-
         RotateCursor();
     }
 
     private void RotateCursor()
     {
-        //transform.RotateAround(
-        //    transform.position, Vector3.forward, PetConstants.ZRotationSpeed * Time.deltaTime);
+        float zDelta = PetConstants.CrosshairRotationSpeed * Time.deltaTime;
+        transform.localEulerAngles += new Vector3(0f, 0f, zDelta);
+    }
 
-        //transform.localRotation += new Vector3(0f, 0f, PetConstants.ZRotationSpeed) * Time.deltaTime);
-        float zDelta = transform.eulerAngles.z + PetConstants.CursorRotationSpeed;
-        transform.eulerAngles += new Vector3(0f, 0f, zDelta); 
+    public void SetCursorSprite(bool isOnTarget)
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = isOnTarget ? hitCursorSprite : cursorSprite;
+        }
     }
 }

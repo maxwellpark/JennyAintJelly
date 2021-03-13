@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - GunBarrel
   - Boss
+  - Crosshair
   layers:
   - Default
   - TransparentFX

@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyToCheck: {fileID: 8791521424219429669}
+  aggroActivator: {fileID: 4379222533772223422}
 --- !u!1 &7682851167068114314
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 8195612142167242223}
   - component: {fileID: 3438384518317135346}
   - component: {fileID: 6657483970149643509}
+  - component: {fileID: 7955887119339927636}
+  - component: {fileID: 6517788036852705706}
   m_Layer: 0
   m_Name: Crosshair
-  m_TagString: Untagged
+  m_TagString: Crosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 580018778344896875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.37, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 5867546106855626742}
   m_RootOrder: 1
@@ -95,11 +97,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef05c18880d2b443ab9b976563cd06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitCursorPrefab: {fileID: 0}
-  missCursorPrefab: {fileID: 0}
-  cursorTexture: {fileID: 0}
   cursorSprite: {fileID: 21300000, guid: 96e69639068314557a2be30fbaa725f7, type: 3}
+  hitCursorSprite: {fileID: 21300000, guid: b48722607e7664433bb9ff6c1bb60e1e, type: 3}
+  missCursorSprite: {fileID: 21300000, guid: 326c084f7baf14583aa6388b84bf9b2d, type: 3}
   spriteRenderer: {fileID: 3438384518317135346}
+--- !u!61 &7955887119339927636
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580018778344896875}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00786674, y: -0.00786677}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.25, y: 0.25}
+    newSize: {x: 0.25, y: 0.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.11678867, y: 0.11049551}
+  m_EdgeRadius: 0
+--- !u!50 &6517788036852705706
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580018778344896875}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5867546106855626746
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,4 +10,5 @@
     // Tags
     public static string GunBarrelTag = "GunBarrel";
     public static string ProjectileTag = "Projectile";
+    public static string CrosshairTag = "Crosshair";
 }

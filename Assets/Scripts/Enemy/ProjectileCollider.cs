@@ -19,5 +19,17 @@ public class ProjectileCollider : MonoBehaviour
                 aggroActivator.AggroEnemy();
             }
         }
+        else if (collision.CompareTag(ProjectileConstants.CrosshairTag))
+        {
+            ProjectileManager.Crosshair.SetCursorSprite(isOnTarget: true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag(ProjectileConstants.CrosshairTag))
+        {
+            ProjectileManager.Crosshair.SetCursorSprite(isOnTarget: false);
+        }
     }
 }

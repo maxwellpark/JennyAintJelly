@@ -15,9 +15,10 @@ public class ProjectileManager : MonoBehaviour, ISingleton
     // Dictates the projectile spawn position
     private GameObject gunBarrel;
 
+    public static Crosshair Crosshair { get; set; }
     public static float CurrentDamage { get; set; }
     public static float CurrentRateOfFire { get; set; }
-    private bool isWaiting;
+    private bool isWaitingToFire;
 
     private void Awake()
     {
@@ -38,6 +39,9 @@ public class ProjectileManager : MonoBehaviour, ISingleton
     public void Init()
     {
         gunBarrel = GameObject.FindGameObjectWithTag(ProjectileConstants.GunBarrelTag);
+        Crosshair = GameObject.FindGameObjectWithTag(ProjectileConstants.CrosshairTag)
+            .GetComponent<Crosshair>();
+        
         SetDefaults();
     }
 
@@ -49,7 +53,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
 
     private void Update()
     {
-        if (!isWaiting && Input.GetButtonDown(ProjectileConstants.FireButton))
+        if (!isWaitingToFire && Input.GetButtonDown(ProjectileConstants.FireButton))
         {
             StartCoroutine(FireProjectile());
         }
@@ -59,7 +63,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
     {
         if (gunBarrel != null && currentProjectilePrefab != null)
         {
-            isWaiting = true;
+            isWaitingToFire = true;
             GameObject newProjectile = Instantiate(
                 currentProjectilePrefab, gunBarrel.transform.position, gunBarrel.transform.rotation);
         
@@ -72,7 +76,7 @@ public class ProjectileManager : MonoBehaviour, ISingleton
             AudioManager.Instance.ProjectileAudio.Play();
 
             yield return new WaitForSeconds(CurrentRateOfFire);
-            isWaiting = false;
+            isWaitingToFire = false;
         }
     }
 
@@ -116,6 +120,6 @@ public class ProjectileManager : MonoBehaviour, ISingleton
         AudioManager.Instance.ProjectileAudio.clip = defaultProjectileSound;
         CurrentDamage = ProjectileConstants.DefaultDamage;
         CurrentRateOfFire = ProjectileConstants.DefaultRateOfFire;
-        isWaiting = false;
+        isWaitingToFire = false;
     }
 }
