@@ -4,28 +4,19 @@ using UnityEngine;
 
 public class PetMovement : MonoBehaviour
 {
+    public GameObject playerObject;
+
     public Sprite[] frameArray;
     public SpriteRenderer spriteRenderer;
-
-    private GameObject playerObject;
-    private GameObject cameraObject;
-
-    private Vector3 mousePosition;
-    private Vector2 petDistance = new Vector2(1f, 0f);
-
-    private int currentFrame;
-    private float timer;
-    private float frameRate = 0.2f;
+    Vector3 mousePosition;
+    Vector2 petDistance = new Vector2(0.75f, 0f);
+    int currentFrame; 
+    float timer;
+    float frameRate = 0.2f; 
 
     void Start()
     {
-        playerObject = GameObject.FindGameObjectWithTag("Player");
-        cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
-    }
-
-    private void Update()
-    {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
     }
 
     void FixedUpdate()
